@@ -8,6 +8,8 @@ export type Package = {
   priceMax: number;
   deliverables: string[];
   featured?: boolean;
+  /** Already ships with a website, so it is not offered as a combo. */
+  includesSite?: boolean;
 };
 
 export const packages: Package[] = [
@@ -76,6 +78,7 @@ export const packages: Package[] = [
       "Calendário editorial",
     ],
     featured: true,
+    includesSite: true,
   },
 ];
 

@@ -274,6 +274,37 @@ section[id] {
   }
 }
 
+/*
+  Combo ticket: two halves with round notches where they meet, like a coupon.
+  Each half is masked by two radial gradients (one per side). Static, nothing animates.
+*/
+.ticket-top,
+.ticket-bottom {
+  --notch: 15px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 51% 100%;
+  mask-size: 51% 100%;
+  -webkit-mask-position: left, right;
+  mask-position: left, right;
+}
+.ticket-top {
+  -webkit-mask-image:
+    radial-gradient(circle var(--notch) at 0 100%, #0000 calc(100% - 0.5px), #000),
+    radial-gradient(circle var(--notch) at 100% 100%, #0000 calc(100% - 0.5px), #000);
+  mask-image:
+    radial-gradient(circle var(--notch) at 0 100%, #0000 calc(100% - 0.5px), #000),
+    radial-gradient(circle var(--notch) at 100% 100%, #0000 calc(100% - 0.5px), #000);
+}
+.ticket-bottom {
+  -webkit-mask-image:
+    radial-gradient(circle var(--notch) at 0 0, #0000 calc(100% - 0.5px), #000),
+    radial-gradient(circle var(--notch) at 100% 0, #0000 calc(100% - 0.5px), #000);
+  mask-image:
+    radial-gradient(circle var(--notch) at 0 0, #0000 calc(100% - 0.5px), #000),
+    radial-gradient(circle var(--notch) at 100% 0, #0000 calc(100% - 0.5px), #000);
+}
+
 /* FAQ: animate <details> open/close where the browser supports it. */
 details.faq::details-content {
   block-size: 0;
