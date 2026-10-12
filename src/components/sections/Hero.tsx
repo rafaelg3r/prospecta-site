@@ -8,9 +8,10 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 const delay = (seconds: number) => ({ "--d": `${seconds}s` }) as CSSProperties;
 
 function MaskLine({ children, d }: { children: ReactNode; d: number }) {
-  // Extra top padding keeps accents (ó) from being clipped by the mask.
+  // Padding around the mask (offset by negative margins) keeps accents (ó),
+  // descenders (g, q) and the italic overhang from being clipped.
   return (
-    <span className="-mt-[0.14em] block overflow-hidden pb-[0.04em] pt-[0.14em]">
+    <span className="mx-[-0.12em] mt-[-0.16em] mb-[-0.2em] block overflow-hidden px-[0.12em] pb-[0.2em] pt-[0.16em]">
       <span className="intro-rise block" style={delay(d)}>
         {children}
       </span>
@@ -38,7 +39,7 @@ export function Hero() {
             </MaskLine>
             <MaskLine d={0.32}>
               <span className="text-metal">gera </span>
-              <span className="text-violet pr-[0.08em] font-light italic">clientes.</span>
+              <span className="text-violet pr-[0.12em] font-light italic">clientes.</span>
             </MaskLine>
           </h1>
 
