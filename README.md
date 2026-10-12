@@ -2,6 +2,9 @@
 
 Landing page da Prospecta Studio em Next.js 16, Tailwind v4 e Motion. Gera um site 100% estático.
 
+- Site: https://prospecta-site-sooty.vercel.app
+- Deploy: Vercel, automático a cada push na `main` (previews para outras branches).
+
 ## Rodar
 
 ```bash
@@ -10,8 +13,7 @@ npm run dev      # http://localhost:3000
 npm run build    # gera o site estático em out/
 ```
 
-Para publicar, suba a pasta `out/` em qualquer hospedagem estática (Vercel, Netlify, Hostinger...).
-Antes do deploy, defina `NEXT_PUBLIC_SITE_URL` com o domínio real, para a prévia de compartilhamento (og.jpg) funcionar.
+O deploy é automático pela Vercel. `NEXT_PUBLIC_SITE_URL` já está configurada lá; se trocar de domínio, atualize essa variável para a prévia de compartilhamento (og.jpg) apontar para o endereço certo.
 
 ## Onde mudar
 
