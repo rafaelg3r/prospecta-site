@@ -47,8 +47,25 @@
   }
 }
 
+/*
+  Dark-only site. `only dark` asks browsers not to apply their forced dark
+  mode; the prefers-color-scheme block is the signal Samsung Internet looks
+  for before it skips recolouring a page (without it, gradients and brand
+  colours get darkened on phones with "dark theme for websites" on).
+*/
 :root {
-  color-scheme: dark;
+  color-scheme: only dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: only dark;
+  }
+  html,
+  body {
+    background: var(--color-void);
+    color: var(--color-ink);
+  }
 }
 
 html {
