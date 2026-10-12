@@ -1,12 +1,14 @@
 "use client";
 
-import { ArrowsClockwise, ChartLineUp, Check, Target } from "@phosphor-icons/react";
+import { ArrowDown, ArrowsClockwise, Browsers, ChartLineUp, Check, Target } from "@phosphor-icons/react";
 import { AnimatePresence, m, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { OrbitDot } from "@/components/brand/OrbitDot";
 import { ProspectaMark } from "@/components/brand/ProspectaMark";
+import { ComboBuilder, comboPackages } from "@/components/sections/packages/ComboBuilder";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { packageGuarantees, packages, type Package } from "@/content/packages";
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
@@ -111,7 +113,47 @@ function TierGlyph({ level }: { level: number }) {
   );
 }
 
-function PackageCard({ pkg, index, onActive }: { pkg: Package; index: number; onActive: (i: number) => void }) {
+// Bottom of each card: packages without a site can turn into a combo.
+function ComboStrip({ pkg, onCombo }: { pkg: Package; onCombo: (slug: string) => void }) {
+  if (pkg.includesSite) {
+    return (
+      <p className="mt-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-ink/90">
+        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-200">
+          <Browsers weight="light" className="size-5" aria-hidden />
+        </span>
+        Site ou landing page já incluso, sem precisar de combo.
+      </p>
+    );
+  }
+
+  return (
+    <a
+      href="#combos"
+      onClick={() => onCombo(pkg.slug)}
+      className="group mt-8 flex items-center gap-4 rounded-2xl border border-dashed border-brand-400/45 bg-brand-500/[0.07] px-5 py-4 transition-colors duration-300 hover:border-brand-300/80 hover:bg-brand-500/[0.14]"
+    >
+      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-200">
+        <Browsers weight="light" className="size-5" aria-hidden />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-semibold text-ink">Quer um site junto?</span>
+        <span className="block text-sm text-mute">Vire combo: {COMBO_DISCOUNT_LABEL}.</span>
+      </span>
+      <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-brand-200 transition-colors group-hover:text-white">
+        <span className="hidden sm:inline">Montar combo</span>
+        <ArrowDown
+          weight="bold"
+          className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-y-0.5"
+          aria-hidden
+        />
+      </span>
+    </a>
+  );
+}
+
+type PackageCardProps = { pkg: Package; index: number; onActive: (i: number) => void; onCombo: (slug: string) => void };
+
+function PackageCard({ pkg, index, onActive, onCombo }: PackageCardProps) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { margin: "-45% 0px -45% 0px" });
 
@@ -177,8 +219,10 @@ function PackageCard({ pkg, index, onActive }: { pkg: Package; index: number; on
         ))}
       </ul>
 
+      <ComboStrip pkg={pkg} onCombo={onCombo} />
+
       <WhatsAppButton
-        className="mt-10 w-full sm:w-auto"
+        className="mt-8 w-full sm:w-auto"
         message={`Olá, Prospecta! Vim pelo site e gostaria de agendar um orçamento do pacote Prospecta ${pkg.name}.`}
       />
     </m.article>
@@ -187,49 +231,55 @@ function PackageCard({ pkg, index, onActive }: { pkg: Package; index: number; on
 
 export function Packages() {
   const [active, setActive] = useState(0);
+  const [comboPackage, setComboPackage] = useState(comboPackages[1]?.slug ?? comboPackages[0].slug);
 
   return (
-    <section id="pacotes" className="relative py-24 md:py-36">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <Reveal className="max-w-3xl">
-          <p className="font-display text-[0.85rem] font-light uppercase italic tracking-[0.42em] text-mute">Pacotes mensais</p>
-          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-            Escolha o seu <span className="text-violet pr-[0.06em] font-light italic">plano.</span>
-          </h2>
-          <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
-            Quatro níveis de acompanhamento mensal, do essencial ao completo. Escolha o que combina com o momento da sua empresa.
-          </p>
-        </Reveal>
+    <>
+      <section id="pacotes" className="relative py-24 md:py-36">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+          <Reveal className="max-w-3xl">
+            <p className="font-display text-[0.85rem] font-light uppercase italic tracking-[0.42em] text-mute">Pacotes mensais</p>
+            <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
+              Escolha o seu <span className="text-violet pr-[0.06em] font-light italic">plano.</span>
+            </h2>
+            <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
+              Quatro níveis de acompanhamento mensal, do essencial ao completo. Quer um site novo junto? Transforme o pacote em um
+              combo e o site sai mais barato.
+            </p>
+          </Reveal>
 
-        <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
-          <div className="hidden lg:block">
-            <div className="sticky top-[calc(50dvh-14rem)]">
-              <PackageOrbit active={active} />
+          <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
+            <div className="hidden lg:block">
+              <div className="sticky top-[calc(50dvh-14rem)]">
+                <PackageOrbit active={active} />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 lg:gap-8">
+              {packages.map((pkg, i) => (
+                <PackageCard key={pkg.slug} pkg={pkg} index={i} onActive={setActive} onCombo={setComboPackage} />
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 lg:gap-8">
-            {packages.map((pkg, i) => (
-              <PackageCard key={pkg.slug} pkg={pkg} index={i} onActive={setActive} />
-            ))}
-          </div>
+          <Reveal className="mt-10 flex flex-col gap-5 rounded-3xl border border-white/[0.08] px-7 py-6 sm:px-10 md:mt-14 lg:flex-row lg:items-center lg:justify-between">
+            <p className="font-display text-xl font-semibold text-ink">Todos os pacotes incluem</p>
+            <ul className="flex flex-col gap-4 sm:flex-row sm:gap-8">
+              {packageGuarantees.map((g, i) => {
+                const Icon = GUARANTEE_ICONS[i];
+                return (
+                  <li key={g} className="flex items-center gap-3 text-mute">
+                    <Icon weight="light" className="size-6 text-brand-300" aria-hidden />
+                    {g}
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
         </div>
+      </section>
 
-        <Reveal className="mt-10 flex flex-col gap-5 rounded-3xl border border-white/[0.08] px-7 py-6 sm:px-10 md:mt-14 lg:flex-row lg:items-center lg:justify-between">
-          <p className="font-display text-xl font-semibold text-ink">Todos os pacotes incluem</p>
-          <ul className="flex flex-col gap-4 sm:flex-row sm:gap-8">
-            {packageGuarantees.map((g, i) => {
-              const Icon = GUARANTEE_ICONS[i];
-              return (
-                <li key={g} className="flex items-center gap-3 text-mute">
-                  <Icon weight="light" className="size-6 text-brand-300" aria-hidden />
-                  {g}
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
-      </div>
-    </section>
+      <ComboBuilder packageSlug={comboPackage} onPackageChange={setComboPackage} />
+    </>
   );
 }
