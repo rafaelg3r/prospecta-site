@@ -30,26 +30,29 @@ export function Hero() {
             className="intro-fade font-display text-[0.72rem] font-light uppercase italic tracking-[0.28em] text-mute sm:text-[0.85rem] sm:tracking-[0.42em]"
             style={delay(0.1)}
           >
-            Agência de design e presença digital
+            Sites, estratégia e prospecção digital
           </p>
 
           <h1 className="mt-6 font-display text-[clamp(3.1rem,7.2vw,6.6rem)] font-semibold leading-[0.98] tracking-[-0.035em]">
             <MaskLine d={0.2}>
-              <span className="text-metal">Design que</span>
+              <span className="text-metal">Sites que</span>
             </MaskLine>
             <MaskLine d={0.32}>
-              <span className="text-metal">gera </span>
+              <span className="text-metal">prospectam</span>
+            </MaskLine>
+            <MaskLine d={0.44}>
               <span className="text-violet pr-[0.12em] font-light italic">clientes.</span>
             </MaskLine>
           </h1>
 
-          <p className="intro-fade mt-7 max-w-[36ch] text-lg leading-relaxed text-mute md:text-xl" style={delay(0.55)}>
-            Transformamos presença online em aquisição e conversão de clientes, com sites, conteúdo e estratégia sob o mesmo teto.
+          <p className="intro-fade mt-7 max-w-[36ch] text-lg leading-relaxed text-mute md:text-xl" style={delay(0.65)}>
+            Criamos sites e estratégias que colocam sua empresa na frente de quem já está procurando, e transformam visitas em
+            conversas no WhatsApp.
           </p>
 
           <div
             className="intro-fade mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4"
-            style={delay(0.7)}
+            style={delay(0.8)}
           >
             <Magnetic>
               <WhatsAppButton size="lg" />
