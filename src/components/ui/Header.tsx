@@ -51,7 +51,7 @@ export function Header() {
           href={whatsappLink()}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Falar no WhatsApp"
+          aria-label="Agendar orçamento pelo WhatsApp"
           className="inline-flex size-11 items-center justify-center rounded-full bg-brand-500 text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25)] active:scale-[0.96] md:hidden"
         >
           <WhatsappLogo weight="fill" className="size-5" aria-hidden />

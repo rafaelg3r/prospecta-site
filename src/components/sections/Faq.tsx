@@ -19,8 +19,8 @@ const FAQ = [
     a: "Antes de começar, definimos com você o objetivo e as métricas que importam. Depois, revisamos os números em uma cadência combinada e ajustamos a estratégia.",
   },
   {
-    q: "Por que os valores não estão no site?",
-    a: "Cada projeto é montado para o momento e o objetivo do seu negócio. Conte o que você precisa e enviamos uma proposta sob medida.",
+    q: "Os valores podem variar?",
+    a: "Os valores dos pacotes são a referência mensal. Quando há faixa, o preço final depende do escopo e é confirmado na proposta, depois de entendermos o momento do seu negócio.",
   },
 ];
 

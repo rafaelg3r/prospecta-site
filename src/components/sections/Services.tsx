@@ -1,6 +1,10 @@
-import { ArrowUpRight, Browsers, FilmSlate, PenNib, Strategy } from "@phosphor-icons/react/dist/ssr";
-import type { ComponentType } from "react";
+import { ArrowUpRight, Browsers, FilmSlate, InstagramLogo, PenNib, Strategy } from "@phosphor-icons/react/dist/ssr";
+import type { ComponentType, ReactNode } from "react";
+import { DesignGallery } from "@/components/sections/services/DesignGallery";
+import { WebShowcase } from "@/components/sections/services/WebShowcase";
 import { Reveal } from "@/components/ui/Reveal";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { DESIGN_INSTAGRAM_URL } from "@/content/portfolio";
 import { serviceCategories, type ServiceCategory } from "@/content/services";
 import { cn } from "@/lib/cn";
 import { whatsappLink } from "@/lib/site";
@@ -14,117 +18,67 @@ const ICONS: Record<ServiceCategory["slug"], IconType> = {
   video: FilmSlate,
 };
 
-// Bento placement: 4 categories, 4 cells (4+2 / 3+3 on desktop).
-const LAYOUT: Record<ServiceCategory["slug"], string> = {
-  web: "md:col-span-2 lg:col-span-4",
-  estrategia: "lg:col-span-2",
-  design: "lg:col-span-3",
-  video: "lg:col-span-3",
-};
+const category = (slug: ServiceCategory["slug"]) => serviceCategories.find((c) => c.slug === slug)!;
 
-const SURFACE: Record<ServiceCategory["slug"], string> = {
-  web: "panel",
-  estrategia:
-    "border border-white/15 bg-[linear-gradient(160deg,#6c39d2_0%,#4a1aa6_45%,#24095e_100%)] shadow-[inset_0_1px_0_rgb(255_255_255/0.18)]",
-  design: "panel",
-  video: "panel",
-};
+const quoteMessage = (what: string) => `Olá, Prospecta! Vim pelo site e gostaria de agendar um orçamento de ${what}.`;
 
-function Decoration({ slug }: { slug: ServiceCategory["slug"] }) {
-  if (slug === "web") {
-    return (
-      <svg aria-hidden viewBox="0 0 400 400" className="pointer-events-none absolute -bottom-40 -right-28 hidden w-[520px] opacity-70 md:block">
-        <g transform="rotate(-30 200 200)" fill="none" strokeWidth="1.2">
-          <ellipse cx="200" cy="200" rx="190" ry="76" stroke="rgb(237 236 242 / 0.14)" />
-          <ellipse cx="200" cy="200" rx="140" ry="56" stroke="rgb(150 112 234 / 0.45)" />
-          <ellipse cx="200" cy="200" rx="90" ry="36" stroke="rgb(237 236 242 / 0.1)" strokeDasharray="2 7" />
-        </g>
-        <circle cx="200" cy="200" r="34" fill="url(#web-planet)" />
-        <defs>
-          <radialGradient id="web-planet" cx="35%" cy="30%" r="80%">
-            <stop offset="0" stopColor="#b49cf5" />
-            <stop offset="0.55" stopColor="#5a2bb8" />
-            <stop offset="1" stopColor="#24095e" />
-          </radialGradient>
-        </defs>
-      </svg>
-    );
-  }
-  if (slug === "design") {
-    return (
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_100%_0%,rgb(255_255_255/0.13),transparent_55%)]"
-      />
-    );
-  }
-  if (slug === "video") {
-    return (
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_80%_at_0%_100%,rgb(90_43_184/0.45),transparent_60%)]"
-      />
-    );
-  }
+function CategoryHeading({ slug, onViolet = false }: { slug: ServiceCategory["slug"]; onViolet?: boolean }) {
+  const Icon = ICONS[slug];
+  const c = category(slug);
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full border border-white/20 [box-shadow:0_0_0_28px_rgb(255_255_255/0.03),0_0_0_60px_rgb(255_255_255/0.02)]"
-    />
+    <>
+      <span
+        className={cn(
+          "inline-flex size-12 items-center justify-center rounded-full border",
+          onViolet ? "border-white/25 bg-white/10 text-white" : "border-white/10 bg-white/[0.04] text-brand-300",
+        )}
+      >
+        <Icon weight="light" className="size-6" />
+      </span>
+      <h3 className="mt-6 font-display text-[clamp(2.6rem,4.6vw,3.8rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
+        {c.name}
+      </h3>
+      <p className={cn("mt-4 max-w-[40ch] text-lg leading-relaxed", onViolet ? "text-white/80" : "text-mute")}>{c.description}</p>
+    </>
   );
 }
 
-function ServiceCell({ category, index }: { category: ServiceCategory; index: number }) {
-  const Icon = ICONS[category.slug];
-  const onViolet = category.slug === "estrategia";
-
+// Each service is a direct "book a quote for X" link.
+function ServiceChips({ slug, onViolet = false }: { slug: ServiceCategory["slug"]; onViolet?: boolean }) {
   return (
-    <Reveal delay={index * 0.08} className={cn("relative isolate overflow-hidden rounded-3xl p-7 sm:p-9", LAYOUT[category.slug], SURFACE[category.slug])}>
-      <Decoration slug={category.slug} />
+    <ul className="mt-7 flex flex-wrap gap-2">
+      {category(slug).services.map((service) => (
+        <li key={service}>
+          <a
+            href={whatsappLink(quoteMessage(service))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "group inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300",
+              onViolet
+                ? "border-white/25 bg-white/10 text-white hover:bg-white/20"
+                : "border-white/12 bg-white/[0.04] text-ink hover:border-brand-400/50 hover:bg-brand-500/15",
+            )}
+          >
+            {service}
+            <ArrowUpRight weight="bold" className="size-3.5 opacity-70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+            <span className="sr-only"> (agendar orçamento pelo WhatsApp)</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
-      <div className="relative flex h-full flex-col">
-        <span
-          className={cn(
-            "inline-flex size-12 items-center justify-center rounded-full border",
-            onViolet ? "border-white/25 bg-white/10 text-white" : "border-white/10 bg-white/[0.04] text-brand-300",
-          )}
-        >
-          <Icon weight="light" className="size-6" />
-        </span>
-
-        <h3 className="mt-8 font-display text-4xl font-semibold tracking-[-0.02em] text-ink md:text-5xl">{category.name}</h3>
-        <p className={cn("mt-3 max-w-[38ch] leading-relaxed", onViolet ? "text-white/80" : "text-mute")}>{category.description}</p>
-
-        <ul className={cn("mt-8 grid gap-2.5 sm:mt-auto sm:pt-10", category.slug === "web" && "sm:grid-cols-2 lg:max-w-[78%]")}>
-          {category.services.map((service) => (
-            <li key={service}>
-              <a
-                href={whatsappLink(`Olá, Prospecta! Quero um orçamento de ${service}.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  "group flex min-h-14 items-center justify-between gap-4 rounded-2xl px-5 py-3.5 font-medium transition-colors duration-300",
-                  onViolet ? "bg-white/10 text-white hover:bg-white/20" : "bg-white/[0.045] text-ink hover:bg-white/[0.09]",
-                )}
-              >
-                <span>
-                  {service}
-                  <span className="sr-only"> (pedir orçamento no WhatsApp)</span>
-                </span>
-                <ArrowUpRight
-                  weight="bold"
-                  aria-hidden
-                  className={cn(
-                    "size-4.5 shrink-0 transition-transform duration-300 ease-out-expo group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
-                    onViolet ? "text-white" : "text-brand-300",
-                  )}
-                />
-              </a>
-            </li>
-          ))}
-        </ul>
+function Step({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <li className="flex gap-4">
+      <span aria-hidden className="mt-2 size-2.5 shrink-0 rounded-full bg-current opacity-70" />
+      <div>
+        <p className="font-display text-xl font-semibold">{title}</p>
+        <p className="mt-1 leading-relaxed opacity-80">{children}</p>
       </div>
-    </Reveal>
+    </li>
   );
 }
 
@@ -137,14 +91,72 @@ export function Services() {
             Tudo o que a sua presença digital <span className="text-violet pr-[0.06em] font-light italic">precisa.</span>
           </h2>
           <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
-            Contrate de forma avulsa ou dentro de um pacote. Toque em um serviço para pedir orçamento pelo WhatsApp.
+            Contrate de forma avulsa ou dentro de um pacote. Veja alguns trabalhos e toque em um serviço para agendar seu orçamento.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 md:mt-20 md:grid-cols-2 lg:grid-cols-6 lg:gap-5">
-          {serviceCategories.map((category, i) => (
-            <ServiceCell key={category.slug} category={category} index={i} />
-          ))}
+        {/* Web: copy on the left, live portfolio on the right */}
+        <div className="mt-16 grid items-center gap-10 md:mt-24 lg:grid-cols-12 lg:gap-14">
+          <Reveal className="lg:col-span-5">
+            <CategoryHeading slug="web" />
+            <ServiceChips slug="web" />
+            <WhatsAppButton className="mt-9" message={quoteMessage("um site")} />
+          </Reveal>
+          <Reveal delay={0.1} className="lg:col-span-7">
+            <WebShowcase />
+          </Reveal>
+        </div>
+
+        {/* Design: the work leads, copy follows */}
+        <div className="mt-28 grid items-center gap-8 md:mt-40 lg:grid-cols-12 lg:gap-14">
+          <Reveal className="lg:order-2 lg:col-span-5">
+            <CategoryHeading slug="design" />
+            <ServiceChips slug="design" />
+            <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <WhatsAppButton message={quoteMessage("design")} />
+              <a
+                href={DESIGN_INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 px-2 font-semibold text-brand-200 transition-colors hover:text-white"
+              >
+                <InstagramLogo weight="bold" className="size-5" aria-hidden />
+                Ver mais no Instagram
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1} className="min-w-0 lg:order-1 lg:col-span-7">
+            <DesignGallery />
+          </Reveal>
+        </div>
+
+        {/* Video + Strategy: two bold cards, no invented cases */}
+        <div className="mt-28 grid gap-5 md:mt-40 lg:grid-cols-2">
+          <Reveal className="relative isolate overflow-hidden rounded-3xl border border-white/15 bg-[linear-gradient(160deg,#6c39d2_0%,#4a1aa6_45%,#24095e_100%)] p-7 text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] sm:p-10">
+            <FilmSlate aria-hidden weight="thin" className="pointer-events-none absolute -bottom-10 -right-8 -z-10 size-64 text-white/10" />
+            <CategoryHeading slug="video" onViolet />
+            <ol className="mt-8 space-y-5 text-white">
+              <Step title="Roteiro">A ideia, o gancho dos primeiros segundos e a chamada para ação.</Step>
+              <Step title="Edição">Corte, ritmo e acabamento pensados para Reels.</Step>
+              <Step title="Entrega">Vídeo pronto para publicar no seu perfil.</Step>
+            </ol>
+            <ServiceChips slug="video" onViolet />
+            <WhatsAppButton variant="light" className="mt-9" message={quoteMessage("vídeo")} />
+          </Reveal>
+
+          <Reveal delay={0.1} className="panel relative isolate overflow-hidden rounded-3xl p-7 sm:p-10">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-20 -top-20 -z-10 size-72 rounded-full border border-white/15 [box-shadow:0_0_0_32px_rgb(255_255_255/0.025),0_0_0_70px_rgb(255_255_255/0.015)]"
+            />
+            <CategoryHeading slug="estrategia" />
+            <ol className="mt-8 space-y-5 text-ink">
+              <Step title="Diagnóstico Digital">Um raio-x da sua presença online e do que está travando a captação de clientes.</Step>
+              <Step title="Estratégia Digital">Posicionamento, canais e metas claras, acompanhadas com métricas.</Step>
+            </ol>
+            <ServiceChips slug="estrategia" />
+            <WhatsAppButton className="mt-9" message={quoteMessage("estratégia digital")} />
+          </Reveal>
         </div>
       </div>
     </section>

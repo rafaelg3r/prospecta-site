@@ -7,7 +7,7 @@ export const INSTAGRAM_URL = "https://www.instagram.com/prospecta_studio";
 export const INSTAGRAM_HANDLE = "@prospecta_studio";
 
 export const DEFAULT_WHATSAPP_MESSAGE =
-  "Olá, Prospecta! Vim pelo site e quero melhorar a presença digital da minha empresa.";
+  "Olá, Prospecta! Vim pelo site e gostaria de agendar um orçamento para a minha empresa.";
 
 export function whatsappLink(message: string = DEFAULT_WHATSAPP_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

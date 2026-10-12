@@ -23,7 +23,7 @@ export function FloatingWhatsApp() {
           href={whatsappLink()}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Falar no WhatsApp"
+          aria-label="Agendar orçamento pelo WhatsApp"
           initial={{ opacity: 0, scale: 0.6, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 16 }}

@@ -9,6 +9,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { packageGuarantees, packages, type Package } from "@/content/packages";
 import { cn } from "@/lib/cn";
+import { formatPrice } from "@/lib/format";
 
 // One orbit per package: the bigger the orbit, the further the brand reaches.
 const RINGS = packages.map((_, i) => {
@@ -68,19 +69,22 @@ function PackageOrbit({ active }: { active: number }) {
         </div>
       </div>
 
-      <div className="mt-8 h-24 text-center">
+      <div className="mt-8 h-32 text-center">
         <p className="font-display text-xl font-light italic text-mute">Prospecta</p>
         <AnimatePresence mode="wait" initial={false}>
-          <m.p
+          <m.div
             key={packages[active].slug}
-            className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -14 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
-            {packages[active].name}
-          </m.p>
+            <p className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink">{packages[active].name}</p>
+            <p className="mt-2 font-display text-xl font-medium text-brand-200">
+              {formatPrice(packages[active].priceMin, packages[active].priceMax)}
+              <span className="text-base font-normal text-mute"> /mês</span>
+            </p>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>
@@ -153,7 +157,14 @@ function PackageCard({ pkg, index, onActive }: { pkg: Package; index: number; on
         </div>
       </div>
 
-      <p className="mt-4 max-w-[44ch] text-lg leading-relaxed text-mute">{pkg.tagline}</p>
+      <p className="mt-6 flex flex-wrap items-baseline gap-x-2 font-display">
+        <span className="text-[clamp(1.6rem,3.2vw,2.15rem)] font-semibold tracking-[-0.02em] text-ink">
+          {formatPrice(pkg.priceMin, pkg.priceMax)}
+        </span>
+        <span className="text-lg text-mute">/mês</span>
+      </p>
+
+      <p className="mt-3 max-w-[44ch] text-lg leading-relaxed text-mute">{pkg.tagline}</p>
 
       <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
         {pkg.deliverables.map((item) => (
@@ -167,10 +178,8 @@ function PackageCard({ pkg, index, onActive }: { pkg: Package; index: number; on
       </ul>
 
       <WhatsAppButton
-        className="mt-10"
-        variant={pkg.featured ? "primary" : "ghost"}
-        label={`Quero o ${pkg.name}`}
-        message={`Olá, Prospecta! Tenho interesse no pacote Prospecta ${pkg.name}.`}
+        className="mt-10 w-full sm:w-auto"
+        message={`Olá, Prospecta! Vim pelo site e gostaria de agendar um orçamento do pacote Prospecta ${pkg.name}.`}
       />
     </m.article>
   );

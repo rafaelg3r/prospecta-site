@@ -210,6 +210,70 @@ section[id] {
   .intro-mark { animation: intro-mark 1.6s var(--ease-out-expo) var(--d, 0s) both; }
 }
 
+/* Web showcase: progress of the auto-advance timer on the active tab. */
+@keyframes showcase-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.showcase-progress {
+  animation: showcase-progress linear forwards;
+}
+
+/*
+  Design gallery: a scroll-snap strip on small screens; on desktop the posts
+  fan out like a hand of cards (--o = offset from the centre card).
+*/
+.design-fan {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin-inline: -1rem;
+  padding: 0.5rem 1rem 1.5rem;
+  scrollbar-width: none;
+}
+.design-fan::-webkit-scrollbar {
+  display: none;
+}
+.design-card {
+  flex: 0 0 auto;
+  width: min(62vw, 250px);
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  scroll-snap-align: center;
+  border-radius: 1rem;
+  box-shadow: 0 24px 50px -20px rgb(0 0 0 / 0.8), 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+@media (min-width: 1024px) {
+  .design-fan {
+    position: relative;
+    display: block;
+    height: 480px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .design-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 215px;
+    z-index: var(--z);
+    transform: translate(-50%, -50%) translateX(calc(var(--o) * 56px)) translateY(calc(var(--o) * var(--o) * 6px))
+      rotate(calc(var(--o) * 7deg));
+    transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
+  }
+  .design-fan:hover .design-card {
+    transform: translate(-50%, -50%) translateX(calc(var(--o) * 92px)) translateY(calc(var(--o) * var(--o) * 3px))
+      rotate(calc(var(--o) * 4deg));
+  }
+  .design-fan .design-card:hover {
+    z-index: 30;
+    transform: translate(-50%, -50%) translateX(calc(var(--o) * 92px)) translateY(-26px) rotate(0deg) scale(1.08);
+    box-shadow: 0 34px 70px -24px rgb(119 68 219 / 0.75), 0 0 0 1px rgb(180 156 245 / 0.45);
+  }
+}
+
 /* FAQ: animate <details> open/close where the browser supports it. */
 details.faq::details-content {
   block-size: 0;
