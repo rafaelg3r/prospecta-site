@@ -19,20 +19,20 @@ export const webProjects: WebProject[] = [
     image: "/work/site-domhygino.webp",
   },
   {
+    slug: "boxstore",
+    name: "BOX! Store",
+    kind: "Site de loja",
+    summary: "Moda masculina premium no noroeste gaúcho. Visual editorial para apresentar coleções, lojas e o Clube VIP.",
+    url: "https://box-store-orcin.vercel.app/",
+    image: "/work/site-boxstore.webp",
+  },
+  {
     slug: "cristina",
     name: "Cristina da Costa",
     kind: "Site profissional",
     summary: "Terapeuta hipnóloga. Visual acolhedor e foco em levar o visitante a agendar o atendimento.",
     url: "https://cristinadacostaterapeuta.com.br/",
     image: "/work/site-cristina.webp",
-  },
-  {
-    slug: "classmind",
-    name: "ClassMind",
-    kind: "Web app",
-    summary: "Aplicação para a rotina estudantil, com horários e avaliações num painel claro.",
-    url: "https://classmindsr.vercel.app/",
-    image: "/work/site-classmind.webp",
   },
 ];
 

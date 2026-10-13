@@ -7,6 +7,7 @@ import { OrbitDot } from "@/components/brand/OrbitDot";
 import { ProspectaMark } from "@/components/brand/ProspectaMark";
 import { ComboBuilder, comboPackages } from "@/components/sections/packages/ComboBuilder";
 import { Reveal } from "@/components/ui/Reveal";
+import { REVEAL_MARGIN } from "@/components/ui/reveal-margin";
 import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
@@ -163,7 +164,7 @@ function PackageCard({ pkg, index, onActive, onCombo }: PackageCardProps) {
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.2, margin: REVEAL_MARGIN }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "relative isolate overflow-hidden rounded-3xl p-7 sm:p-10",

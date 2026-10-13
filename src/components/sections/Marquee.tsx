@@ -23,9 +23,10 @@ function Row({ hidden = false }: { hidden?: boolean }) {
 // The one marquee on the page: the breadth of what the studio makes, at a glance.
 export function Marquee() {
   return (
-    <section aria-label="O que fazemos" className="relative border-y border-white/[0.06] py-8 md:py-12">
+    <section aria-label="O que fazemos" className="relative border-y border-white/[0.06] py-5 md:py-8">
       <div className="flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-        <div className="flex w-max font-display text-[clamp(2.6rem,7vw,6rem)] font-semibold leading-none tracking-[-0.03em] motion-safe:animate-marquee">
+        {/* py: room for accents and descenders inside the overflow-hidden track */}
+        <div className="flex w-max py-[0.22em] font-display text-[clamp(2.6rem,7vw,6rem)] font-semibold leading-none tracking-[-0.03em] motion-safe:animate-marquee">
           <Row />
           <Row hidden />
         </div>

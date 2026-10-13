@@ -132,8 +132,21 @@ section[id] {
   border-radius: 999px;
 }
 
-/* Brushed-metal text, same banding as the logo ring. */
+/*
+  Gradient text (text-metal / text-violet / text-accent-gradient) is painted with
+  background-clip: text, and a background only exists inside the element's box.
+  Glyph parts outside it (descenders on tight leading, accents, italic overhang)
+  came out transparent and looked clipped. Each utility extends its box with
+  padding and cancels it with a negative margin, so layout does not move.
+  The right side stays with the pr-[...] already set on italic accents.
+*/
 @utility text-metal {
+  padding-top: 0.12em;
+  padding-bottom: 0.2em;
+  padding-left: 0.06em;
+  margin-top: -0.12em;
+  margin-bottom: -0.2em;
+  margin-left: -0.06em;
   background-image: linear-gradient(
     100deg,
     #ffffff 0%,
@@ -154,6 +167,12 @@ section[id] {
 
 /* Brand violet, the planet slice and the "O" of the wordmark. */
 @utility text-violet {
+  padding-top: 0.12em;
+  padding-bottom: 0.2em;
+  padding-left: 0.06em;
+  margin-top: -0.12em;
+  margin-bottom: -0.2em;
+  margin-left: -0.06em;
   background-image: linear-gradient(135deg, #a888f2 0%, #7744db 45%, #4a1aa6 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -195,6 +214,12 @@ section[id] {
 
 /* Headline accent on area pages: accent light to brand violet. */
 @utility text-accent-gradient {
+  padding-top: 0.12em;
+  padding-bottom: 0.2em;
+  padding-left: 0.06em;
+  margin-top: -0.12em;
+  margin-bottom: -0.2em;
+  margin-left: -0.06em;
   background-image: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 45%, #7744db 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -498,7 +523,7 @@ details.faq summary::-webkit-details-marker {
 }
 .pt-circle {
   position: absolute;
-  border-radius: 999px;
+  border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   will-change: transform;
 }
@@ -511,8 +536,8 @@ details.faq summary::-webkit-details-marker {
 .pt-mask {
   display: block;
   overflow: hidden;
-  padding: 0.1em 0.14em 0.24em;
-  margin: -0.1em -0.14em -0.24em;
+  padding: 0.12em 0.16em 0.3em;
+  margin: -0.12em -0.16em -0.3em;
 }
 
 /* While the curtain is down, the new page's intro waits; it plays as the curtain lifts. */

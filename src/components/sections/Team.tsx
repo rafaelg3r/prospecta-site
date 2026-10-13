@@ -56,7 +56,9 @@ export function Team() {
                   <h3 className="font-display text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-ink">
                     {person.name}
                   </h3>
-                  <p className="text-violet mt-1 font-display text-xl font-light italic">{person.role}</p>
+                  <p className="mt-1 font-display text-xl font-light italic">
+                    <span className="text-violet pr-[0.06em]">{person.role}</span>
+                  </p>
                 </div>
               </div>
               <p className="mt-8 max-w-[48ch] text-lg leading-relaxed text-mute">{person.bio}</p>
