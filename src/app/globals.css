@@ -20,6 +20,11 @@
   --color-brand-700: #3d1494;
   --color-brand-800: #24095e;
 
+  /* Area accent (service identity). Violet by default, overridden by [data-area]. */
+  --color-accent: #a77bff;
+  --color-accent-light: #d3c4fb;
+  --color-accent-strong: #6a35e0;
+
   --color-ink: #edecf2;
   --color-mute: #a7a3ba;
   --color-faint: #6f6a86;
@@ -156,13 +161,95 @@ section[id] {
   -webkit-text-stroke: 1px rgb(237 236 242 / 0.32);
 }
 
-/* Glass-ish panel used for cards. Solid fallback where transparency is reduced. */
+/* Base panel for cards: lifted violet surface with a lilac edge. Solid fallback where transparency is reduced. */
 @utility panel {
-  border: 1px solid rgb(255 255 255 / 0.09);
+  border: 1px solid rgb(180 156 245 / 0.18);
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.015)),
-    rgb(10 5 38 / 0.55);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.07);
+    linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02)),
+    linear-gradient(165deg, #1c0f4f 0%, #120a3b 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+}
+
+/*
+  Highlighted card: gradient border in the area accent, violet surface tinted by
+  the accent and a glow that only fades in (opacity) on hover.
+*/
+@utility card-vivid {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(165deg, color-mix(in oklab, var(--color-accent) 18%, #1e1055) 0%, #160b46 55%, #10083a 100%) padding-box,
+    linear-gradient(
+        135deg,
+        var(--color-accent-light) 0%,
+        rgb(255 255 255 / 0.12) 34%,
+        rgb(255 255 255 / 0.06) 64%,
+        var(--color-accent) 100%
+      )
+      border-box;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    0 30px 70px -36px color-mix(in oklab, var(--color-accent) 75%, transparent);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 0%, color-mix(in oklab, var(--color-accent) 32%, transparent), transparent 65%);
+    opacity: 0.6;
+    transition: opacity 0.5s var(--ease-out-expo);
+  }
+  @media (hover: hover) {
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}
+
+/* Filled card in the area accent, white text. One per group, for emphasis. */
+@utility card-accent {
+  border: 1px solid rgb(255 255 255 / 0.22);
+  background: linear-gradient(
+    160deg,
+    var(--color-accent-strong) 0%,
+    color-mix(in oklab, var(--color-accent-strong) 50%, #3d1494) 50%,
+    #24095e 100%
+  );
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 40px 90px -36px color-mix(in oklab, var(--color-accent) 80%, transparent);
+}
+
+/* Headline accent on area pages: accent light to brand violet. */
+@utility text-accent-gradient {
+  background-image: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 45%, #7744db 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/*
+  Each service area has its own accent next to the brand violet (Web keeps the
+  violet). Set data-area on any wrapper and every accent utility inside follows.
+*/
+[data-area="design"] {
+  --color-accent: #f472b6;
+  --color-accent-light: #fbcfe8;
+  --color-accent-strong: #db2777;
+}
+[data-area="video"] {
+  --color-accent: #fb7a5a;
+  --color-accent-light: #fed7c3;
+  --color-accent-strong: #e2502f;
+}
+[data-area="estrategia"] {
+  --color-accent: #22d3ee;
+  --color-accent-light: #a5f3fc;
+  --color-accent-strong: #0e7490;
 }
 
 @media (prefers-reduced-transparency: reduce) {
@@ -308,6 +395,34 @@ section[id] {
 /* Reel anatomy (Vídeo page): looping playhead, same scaleX trick as the showcase timer. */
 @media (prefers-reduced-motion: no-preference) {
   .reel-progress { animation: showcase-progress 9s linear infinite; }
+}
+
+/*
+  Area heroes. All loops are transform/opacity only and stop under reduced motion.
+  - playhead: a full-width layer slid across its track (Vídeo).
+  - rec: blinking dot (Vídeo). sweep: rotating radar beam (Estratégia).
+  - ping: expanding ring on radar points (Estratégia).
+*/
+@keyframes hero-playhead {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes hero-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+@keyframes hero-sweep {
+  to { transform: rotate(360deg); }
+}
+@keyframes hero-ping {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-playhead { animation: hero-playhead 9s linear infinite; }
+  .hero-rec { animation: hero-blink 1.4s ease-in-out infinite; }
+  .hero-sweep { animation: hero-sweep 6s linear infinite; }
+  .hero-ping { animation: hero-ping 2.6s var(--ease-out-expo) infinite; }
 }
 
 /* FAQ: animate <details> open/close where the browser supports it. */

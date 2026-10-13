@@ -31,7 +31,7 @@ export function ReelAnatomy() {
       <Reveal className="mx-auto w-[min(72vw,300px)]">
         <div
           aria-hidden
-          className="relative aspect-[9/16] overflow-hidden rounded-[2.4rem] border border-white/15 bg-[linear-gradient(165deg,#6c39d2_0%,#3d1494_45%,#0c0630_100%)] p-5 shadow-[0_40px_90px_-30px_rgb(119_68_219/0.8),inset_0_1px_0_rgb(255_255_255/0.2)]"
+          className="relative aspect-[9/16] overflow-hidden rounded-[2.4rem] border border-white/15 bg-[linear-gradient(165deg,var(--color-accent-strong)_0%,#5a2bb8_50%,#0c0630_100%)] p-5 shadow-[0_40px_90px_-30px_color-mix(in_oklab,var(--color-accent)_70%,transparent),inset_0_1px_0_rgb(255_255_255/0.2)]"
         >
           <div className="mx-auto h-1.5 w-16 rounded-full bg-black/40" />
           <div className="absolute inset-0 flex items-center justify-center">
@@ -45,7 +45,7 @@ export function ReelAnatomy() {
             </div>
             <div className="mt-2 flex gap-1.5">
               {PARTS.map((part, i) => (
-                <div key={part.name} className={cn("h-1.5 rounded-full", i === 0 ? "bg-brand-200" : i === 2 ? "bg-brand-300/80" : "bg-white/35", part.share)} />
+                <div key={part.name} className={cn("h-1.5 rounded-full", i === 0 ? "bg-accent-light" : i === 2 ? "bg-brand-300" : "bg-white/35", part.share)} />
               ))}
             </div>
             <div className="mt-2.5 flex gap-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white/70">
@@ -61,8 +61,8 @@ export function ReelAnatomy() {
 
       <ol className="flex flex-col gap-4">
         {PARTS.map((part, i) => (
-          <Reveal as="li" key={part.name} delay={i * 0.08} className="panel flex gap-5 rounded-3xl p-6 sm:p-8">
-            <span className="w-16 shrink-0 font-display text-5xl font-semibold leading-none text-outline">{String(i + 1).padStart(2, "0")}</span>
+          <Reveal as="li" key={part.name} delay={i * 0.08} className="card-vivid flex gap-5 rounded-3xl p-6 sm:p-8">
+            <span className="w-16 shrink-0 font-display text-5xl font-semibold leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h3 className="font-display text-2xl font-semibold text-ink">{part.name}</h3>
               <p className="mt-2 text-lg leading-relaxed text-mute">{part.text}</p>

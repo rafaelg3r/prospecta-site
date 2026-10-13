@@ -3,10 +3,12 @@
 import { Browsers, RocketLaunch, Tag } from "@phosphor-icons/react";
 import { AnimatePresence, m } from "motion/react";
 import { useState, type ReactNode } from "react";
+import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL, COMBO_SITE_DISCOUNT, comboSitePrice, sites } from "@/content/combos";
 import { packages } from "@/content/packages";
+import { serviceHref } from "@/content/services";
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 
@@ -153,9 +155,12 @@ export function ComboBuilder({ packageSlug, onPackageChange }: ComboBuilderProps
               <Browsers weight="light" className="mt-0.5 size-5 shrink-0 text-brand-300" aria-hidden />
               <span>
                 Só precisa do site? Ele também é vendido avulso, sem pacote.{" "}
-                <a href="#servicos" className="font-semibold text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline">
+                <Link
+                  href={serviceHref("web")}
+                  className="font-semibold text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline"
+                >
                   Ver sites
-                </a>
+                </Link>
               </span>
             </li>
             {launch && (
