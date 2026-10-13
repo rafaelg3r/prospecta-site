@@ -2,6 +2,7 @@
 
 import { m } from "motion/react";
 import type { ReactNode } from "react";
+import { REVEAL_MARGIN } from "@/components/ui/reveal-margin";
 
 type RevealProps = {
   children: ReactNode;
@@ -22,7 +23,7 @@ export function Reveal({ children, className, delay = 0, y = 28, as = "div", are
       data-area={area}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.25, margin: REVEAL_MARGIN }}
       transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}

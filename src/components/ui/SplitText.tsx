@@ -1,6 +1,7 @@
 "use client";
 
 import { useInView } from "motion/react";
+import { REVEAL_MARGIN } from "@/components/ui/reveal-margin";
 import { Children, cloneElement, isValidElement, useRef, type CSSProperties, type ReactElement, type ReactNode } from "react";
 
 type Unit = { key: string; index: number; node: ReactNode };
@@ -41,7 +42,7 @@ function toUnits(children: ReactNode): (Unit | " ")[] {
 // Screen readers get the sentence as written.
 export function SplitText({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const inView = useInView(ref, { once: true, amount: 0.5, margin: REVEAL_MARGIN });
   const units = toUnits(children);
 
   return (

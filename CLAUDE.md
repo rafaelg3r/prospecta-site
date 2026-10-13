@@ -45,6 +45,8 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 - Anime só `transform` e `opacity`. Nada de SMIL, `filter: blur` grande, `mix-blend-mode` ou `backdrop-blur` em listas.
 - No Tailwind v4, `translate-*`/`rotate-*`/`scale-*` usam as propriedades CSS `translate`/`rotate`/`scale`, que somam com `transform`. Em elementos animados via `transform` (WAAPI, Motion), defina o estado inicial com `style={{ transform }}`, não com classe.
 - A transição de página intercepta cliques em links internos para outra rota (fase de captura) e só chama `router.push` com a tela coberta. Links com âncora na mesma página, nova aba, cliques com modificador e `prefers-reduced-motion` ficam de fora. O `data-scroll-behavior="smooth"` no `<html>` faz o Next pular direto para o topo ou âncora por baixo da cortina.
+- Animações de entrada (`Reveal`, `SplitText`, cards de pacote) usam `REVEAL_MARGIN` (`src/components/ui/reveal-margin.ts`): o que já ficou acima da tela conta como visto. Sem isso, rolagem rápida deixava títulos e cards escondidos atrás da máscara.
+- Texto em gradiente (`text-metal`, `text-violet`, `text-accent-gradient`) estende a própria caixa com padding e margem negativa, porque o gradiente só é pintado dentro dela (sem isso, perna do "g", acentos e itálico apareciam cortados). Não junte essas classes com `mt-*`/`mb-*` no mesmo elemento: ponha o gradiente num `span` interno. Contêineres com `overflow: hidden` em volta de texto precisam de folga vertical (ver `Marquee`).
 - Satélites orbitais: `OrbitDot` (CSS no compositor), não `animateMotion`.
 - Imagens: WebP pré-otimizado, `<img loading="lazy">` com `width`/`height`.
 - Lighthouse local varia muito com a máquina ocupada; compare versões alternando execuções.
