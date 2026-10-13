@@ -1,3 +1,4 @@
+import { AreaLinks } from "@/components/sections/AreaLinks";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
@@ -26,6 +27,7 @@ export default function Home() {
     <>
       <main>
         <Hero />
+        <AreaLinks />
         <Marquee />
         <Manifesto />
         <Offerings />

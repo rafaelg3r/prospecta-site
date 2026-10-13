@@ -172,7 +172,7 @@ function PackageCard({ pkg, index, onActive, onCombo }: PackageCardProps) {
         "relative isolate overflow-hidden rounded-3xl p-7 sm:p-10",
         pkg.featured
           ? "border border-transparent [background:linear-gradient(#0c0630,#0c0630)_padding-box,linear-gradient(135deg,#b49cf5,#5a2bb8_45%,#24095e_70%,#9670ea)_border-box] shadow-[0_30px_80px_-30px_rgb(119_68_219/0.6)]"
-          : "panel",
+          : "card-vivid",
       )}
     >
       {pkg.featured && (

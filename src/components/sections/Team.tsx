@@ -1,4 +1,6 @@
+import { AreaLink } from "@/components/ui/AreaLink";
 import { Reveal } from "@/components/ui/Reveal";
+import { serviceCategories } from "@/content/services";
 import { TEAM } from "@/content/team";
 import { cn } from "@/lib/cn";
 
@@ -44,7 +46,7 @@ export function Team() {
             <Reveal
               key={person.name}
               delay={i * 0.12}
-              className={cn("panel relative overflow-hidden rounded-3xl p-7 sm:p-10", i === 1 && "lg:mt-24")}
+              className={cn("card-vivid overflow-hidden rounded-3xl p-7 sm:p-10", i === 1 && "lg:mt-24")}
             >
               <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
                 <Monogram initials={person.initials} flip={i === 1} />
@@ -63,6 +65,12 @@ export function Team() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-white/10 pt-6">
+                <span className="text-sm font-semibold uppercase tracking-[0.16em] text-mute">Cuida de</span>
+                {person.areas.map((slug) => (
+                  <AreaLink key={slug} slug={slug} size="sm" label={serviceCategories.find((c) => c.slug === slug)!.name} />
+                ))}
+              </div>
             </Reveal>
           ))}
         </div>
