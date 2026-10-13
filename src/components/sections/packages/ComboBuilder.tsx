@@ -171,7 +171,7 @@ export function ComboBuilder({ packageSlug, onPackageChange }: ComboBuilderProps
         <Reveal delay={0.1} className="relative lg:sticky lg:top-28 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1">
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-x-6 -inset-y-10 -z-10 bg-[radial-gradient(closest-side,rgb(119_68_219/0.3),transparent)]"
+            className="pointer-events-none absolute -inset-y-10 inset-x-0 -z-10 lg:-inset-x-6 bg-[radial-gradient(closest-side,rgb(119_68_219/0.3),transparent)]"
           />
 
           <div className="ticket-top relative isolate overflow-hidden rounded-t-3xl bg-[linear-gradient(165deg,#1d0e55_0%,#110741_55%,#0c0630_100%)] p-7 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] sm:p-10">

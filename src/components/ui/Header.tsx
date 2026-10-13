@@ -2,6 +2,7 @@
 
 import { WhatsappLogo } from "@phosphor-icons/react";
 import { useMotionValueEvent, useScroll } from "motion/react";
+import Link from "next/link";
 import { useState } from "react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
@@ -27,20 +28,20 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-10">
-        <a href="#top" className="text-[1.05rem] sm:text-[1.15rem]">
+        <Link href="/" className="text-[1.05rem] sm:text-[1.15rem]">
           <Wordmark />
           <span className="sr-only">, início</span>
-        </a>
+        </Link>
 
         <nav aria-label="Principal" className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="whitespace-nowrap rounded-full px-4 py-2 text-[0.92rem] font-medium text-mute transition-colors hover:text-ink"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

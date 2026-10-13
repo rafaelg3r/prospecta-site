@@ -17,16 +17,19 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 | --- | --- |
 | WhatsApp, mensagem padrão, Instagram, links do menu | `src/lib/site.ts` |
 | Pacotes (preços mensais do Notion) | `src/content/packages.ts` |
-| Serviços avulsos por categoria | `src/content/services.ts` |
+| Serviços por área (preços, processo, textos das páginas) | `src/content/services.ts` |
+| Páginas de cada área (`/servicos/web`, `design`, `estrategia`, `video`) | `src/app/servicos/[area]/page.tsx` + `src/components/service/` |
 | Combos (pacote + site): sites, preços e desconto (10% no site) | `src/content/combos.ts` |
 | Portfólio (sites e posts) | `src/content/portfolio.ts` + imagens em `public/work/` (WebP) |
 | Cores, fontes, animações | `src/app/globals.css` (bloco `@theme`) |
 | Logo e fundo de estrelas | `public/brand/` |
 | Seções da página | `src/components/sections/` |
+| Equipe (usada em "Quem faz" e "Quem cuida") | `src/content/team.ts` |
 
 ## Regras de design
 - Paleta da marca: fundo `void #06020f`, violeta `brand-*`, prata metálica (`text-metal`). Destaque de títulos = palavra em itálico light com `text-violet`.
 - Oferta em três formatos, apresentados na seção "Como contratar" (`Offerings.tsx`): serviços avulsos, pacotes mensais e combos (pacote + site). O Launch já inclui site e fica fora dos combos (`includesSite`).
+- Links internos para outras páginas usam `next/link`; os do menu são absolutos (`/#pacotes`) para funcionar a partir das páginas de serviço.
 - Botões: todos os CTAs usam `WhatsAppButton` com o rótulo "Agendar orçamento" e mensagem específica (pacote ou serviço). Variante `light` em fundos violeta.
 - Formas: botões em pílula; painéis `rounded-3xl`.
 - Sem travessão (— ou –) nos textos visíveis. Sem números, depoimentos ou cases inventados: use só dados reais (Notion, portfólio).

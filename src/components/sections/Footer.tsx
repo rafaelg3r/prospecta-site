@@ -1,11 +1,13 @@
 import { InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import { Wordmark } from "@/components/brand/Wordmark";
+import { serviceCategories, serviceHref } from "@/content/services";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, NAV_LINKS, WHATSAPP_DISPLAY, whatsappLink } from "@/lib/site";
 
 export function Footer() {
   return (
     <footer className="border-t border-white/[0.07]">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.5fr_1fr_1fr] lg:px-10">
+      <div className="mx-auto grid max-w-[1400px] gap-12 px-4 py-16 sm:px-6 sm:grid-cols-2 md:grid-cols-[1.5fr_1fr_1fr_1fr] lg:px-10">
         <div>
           <Wordmark className="text-2xl" />
           <p className="mt-6 max-w-[34ch] leading-relaxed text-mute">
@@ -18,9 +20,22 @@ export function Footer() {
           <ul className="mt-5 flex flex-col gap-3">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-mute transition-colors hover:text-ink">
+                <Link href={link.href} className="text-mute transition-colors hover:text-ink">
                   {link.label}
-                </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav aria-label="Áreas de serviço">
+          <p className="font-display text-lg font-semibold text-ink">Serviços</p>
+          <ul className="mt-5 flex flex-col gap-3">
+            {serviceCategories.map((c) => (
+              <li key={c.slug}>
+                <Link href={serviceHref(c.slug)} className="text-mute transition-colors hover:text-ink">
+                  {c.name}
+                </Link>
               </li>
             ))}
           </ul>
