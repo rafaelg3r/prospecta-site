@@ -31,7 +31,7 @@ export function HeroCopy({ area, align = "left", className }: { area: ServiceCat
         <WhatsAppButton size="lg" message={areaQuote(area)} />
         <a
           href="#servicos-e-valores"
-          className="group inline-flex h-14 items-center gap-2 rounded-full px-4 text-base font-semibold text-ink transition-colors hover:text-accent-light"
+          className="group inline-flex h-14 shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 text-base font-semibold text-ink transition-colors hover:text-accent-light"
         >
           Ver serviços e valores
           <ArrowDown weight="bold" className="size-5 transition-transform duration-300 ease-out-expo group-hover:translate-y-0.5" aria-hidden />

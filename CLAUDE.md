@@ -11,7 +11,7 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 - Next 16 tem mudanças incompatíveis: leia `node_modules/next/dist/docs/` antes de alterar config ou APIs.
 - `output: "export"` não aceita `cacheComponents` nem `partialPrefetching` (PPR). Não reative.
 - Rode `npm run lint` e `npm run build` antes de qualquer commit.
-- Se o `next dev` servir CSS antigo depois de editar `globals.css` (acontece no Windows), pare o servidor, apague `.next` e inicie de novo.
+- O cache em disco do Turbopack fica desligado em `next.config.ts` (`turbopackFileSystemCacheFor*`): com o loader do Tailwind ele servia um `globals.css` antigo no dev e em produção. Não reative.
 
 ## Onde fica cada coisa
 | O quê | Onde |
@@ -46,5 +46,5 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 
 ## Verificação e deploy
 - Confira desktop (1440) e mobile (390): sem scroll horizontal, console sem erros.
-- Deploy: push na `main` deveria publicar sozinho, mas a integração GitHub → Vercel falhou recentemente. Se nenhum deploy novo aparecer em `npx vercel ls prospecta-site`, publique com `npx vercel deploy --prod --yes`.
+- Deploy: push na `main` deveria publicar sozinho, mas a integração GitHub → Vercel falhou recentemente. Se nenhum deploy novo aparecer em `npx vercel ls prospecta-site`, publique com `npx vercel deploy --prod --yes`. Se produção mostrar CSS antigo (cores de área sumindo), use `--force` para ignorar o cache de build.
 - A variável `NEXT_PUBLIC_SITE_URL` está configurada na Vercel. Se trocar de domínio, atualize-a.
