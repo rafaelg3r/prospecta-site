@@ -11,6 +11,7 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 - Next 16 tem mudanças incompatíveis: leia `node_modules/next/dist/docs/` antes de alterar config ou APIs.
 - `output: "export"` não aceita `cacheComponents` nem `partialPrefetching` (PPR). Não reative.
 - Rode `npm run lint` e `npm run build` antes de qualquer commit.
+- Se o `next dev` servir CSS antigo depois de editar `globals.css` (acontece no Windows), pare o servidor, apague `.next` e inicie de novo.
 
 ## Onde fica cada coisa
 | O quê | Onde |
@@ -18,7 +19,7 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 | WhatsApp, mensagem padrão, Instagram, links do menu | `src/lib/site.ts` |
 | Pacotes (preços mensais do Notion) | `src/content/packages.ts` |
 | Serviços por área (preços, processo, textos das páginas) | `src/content/services.ts` |
-| Páginas de cada área (`/servicos/web`, `design`, `estrategia`, `video`) | `src/app/servicos/[area]/page.tsx` + `src/components/service/` |
+| Páginas de cada área (`/servicos/web`, `design`, `estrategia`, `video`) | `src/app/servicos/[area]/page.tsx` + `src/components/service/` (hero próprio por área em `service/heroes/`) |
 | Combos (pacote + site): sites, preços e desconto (10% no site) | `src/content/combos.ts` |
 | Portfólio (sites e posts) | `src/content/portfolio.ts` + imagens em `public/work/` (WebP) |
 | Cores, fontes, animações | `src/app/globals.css` (bloco `@theme`) |
@@ -28,6 +29,8 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 
 ## Regras de design
 - Paleta da marca: fundo `void #06020f`, violeta `brand-*`, prata metálica (`text-metal`). Destaque de títulos = palavra em itálico light com `text-violet`.
+- Cada área de serviço tem um acento próprio ao lado do violeta (Web violeta, Design rosa, Vídeo coral, Estratégia ciano). Use `data-area="<slug>"` (ou a prop `area` do `Reveal`) e as classes `accent`, `accent-light`, `accent-strong`, `text-accent-gradient`. Os valores ficam em `globals.css`; o fundo continua sempre escuro.
+- Cards: `panel` (base), `card-vivid` (borda em gradiente e brilho no acento) e `card-accent` (preenchido com o acento, um por grupo). Navegação para as áreas usa `AreaLink`; CTAs continuam com `WhatsAppButton`.
 - Oferta em três formatos, apresentados na seção "Como contratar" (`Offerings.tsx`): serviços avulsos, pacotes mensais e combos (pacote + site). O Launch já inclui site e fica fora dos combos (`includesSite`).
 - Links internos para outras páginas usam `next/link`; os do menu são absolutos (`/#pacotes`) para funcionar a partir das páginas de serviço.
 - Botões: todos os CTAs usam `WhatsAppButton` com o rótulo "Agendar orçamento" e mensagem específica (pacote ou serviço). Variante `light` em fundos violeta.

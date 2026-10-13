@@ -2,7 +2,7 @@ import { ArrowDownRight, ArrowUpRight, Browsers, Equals, Plus, Tag } from "@phos
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { OrbitDot } from "@/components/brand/OrbitDot";
-import { SERVICE_ICONS } from "@/components/sections/Services";
+import { SERVICE_ICONS } from "@/components/ui/service-icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { packages } from "@/content/packages";
@@ -23,14 +23,14 @@ function AreaDoors() {
       {serviceCategories.map((c) => {
         const Icon = SERVICE_ICONS[c.slug];
         return (
-          <li key={c.slug}>
+          <li key={c.slug} data-area={c.slug}>
             <Link
               href={serviceHref(c.slug)}
-              className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-3 transition-[transform,background-color,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-brand-300/50 hover:bg-brand-500/15"
+              className="group flex h-full flex-col justify-between rounded-2xl border border-accent/35 bg-accent/10 p-3 transition-[transform,background-color,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-accent hover:bg-accent/20"
             >
               <span className="flex items-start justify-between">
-                <span className="inline-flex size-9 items-center justify-center rounded-full bg-brand-500/20 text-brand-200">
-                  <Icon weight="light" className="size-5" />
+                <span className="inline-flex size-9 items-center justify-center rounded-xl bg-accent text-[#0a0526]">
+                  <Icon weight="bold" className="size-5" />
                 </span>
                 <ArrowUpRight
                   weight="bold"
@@ -145,7 +145,7 @@ type FormatCardProps = {
 
 const TONES = {
   soft: {
-    card: "panel",
+    card: "card-vivid",
     visual: "bg-[radial-gradient(120%_100%_at_50%_0%,rgb(119_68_219/0.22),transparent_70%)] border-white/[0.07]",
     step: "text-brand-300",
     muted: "text-mute",
