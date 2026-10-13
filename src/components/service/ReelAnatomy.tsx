@@ -31,7 +31,7 @@ export function ReelAnatomy() {
       <Reveal className="mx-auto w-[min(72vw,300px)]">
         <div
           aria-hidden
-          className="relative aspect-[9/16] overflow-hidden rounded-[2.4rem] border border-white/15 bg-[linear-gradient(165deg,var(--color-accent-strong)_0%,#5a2bb8_50%,#0c0630_100%)] p-5 shadow-[0_40px_90px_-30px_color-mix(in_oklab,var(--color-accent)_70%,transparent),inset_0_1px_0_rgb(255_255_255/0.2)]"
+          className="relative aspect-[9/16] overflow-hidden rounded-[2.4rem] border border-white/15 bg-[linear-gradient(165deg,var(--color-accent-strong)_0%,#5a2bb8_50%,#0c0630_100%)] p-5 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]"
         >
           <div className="mx-auto h-1.5 w-16 rounded-full bg-black/40" />
           <div className="absolute inset-0 flex items-center justify-center">
@@ -61,7 +61,7 @@ export function ReelAnatomy() {
 
       <ol className="flex flex-col gap-4">
         {PARTS.map((part, i) => (
-          <Reveal as="li" key={part.name} delay={i * 0.08} className="card-vivid flex gap-5 rounded-3xl p-6 sm:p-8">
+          <Reveal as="li" key={part.name} delay={i * 0.08} className="panel flex gap-5 rounded-3xl p-6 sm:p-8">
             <span className="w-16 shrink-0 font-display text-5xl font-semibold leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h3 className="font-display text-2xl font-semibold text-ink">{part.name}</h3>

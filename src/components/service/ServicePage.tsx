@@ -14,6 +14,7 @@ import { VideoHero } from "@/components/service/heroes/VideoHero";
 import { WebHero } from "@/components/service/heroes/WebHero";
 import { ReelAnatomy } from "@/components/service/ReelAnatomy";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { DESIGN_INSTAGRAM_URL } from "@/content/portfolio";
@@ -30,8 +31,8 @@ function SectionHeading({ eyebrow, children, intro }: { eyebrow: string; childre
   return (
     <Reveal className="max-w-3xl">
       <p className="font-display text-[0.85rem] font-light uppercase italic tracking-[0.42em] text-mute">{eyebrow}</p>
-      <h2 className="mt-5 font-display text-[clamp(2.2rem,4.8vw,4rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
-        {children}
+      <h2 className="mt-5 font-display text-[clamp(2.2rem,4.8vw,4rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-ink">
+        <SplitText>{children}</SplitText>
       </h2>
       {intro && <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">{intro}</p>}
     </Reveal>
@@ -146,16 +147,20 @@ export function ServicePage({ area }: { area: ServiceCategory }) {
                     href={whatsappLink(quoteMessage(offer.name))}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group card-vivid flex h-full flex-col overflow-hidden rounded-3xl p-7 transition-transform duration-500 ease-out-expo hover:-translate-y-1.5 sm:p-9"
+                    className="group card-area flex h-full flex-col overflow-hidden rounded-3xl p-7 hover:border-accent/40 sm:p-9"
                   >
-                    <span aria-hidden className="absolute left-7 top-0 h-1 w-16 rounded-b-full bg-accent sm:left-9" />
                     <div className="flex items-start justify-between gap-4">
-                      <span className="font-display text-5xl font-semibold leading-none text-accent">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="inline-flex size-11 items-center justify-center rounded-full bg-accent text-[#0a0526] transition-transform duration-300 ease-out-expo group-hover:rotate-45">
-                        <ArrowUpRight weight="bold" className="size-4" aria-hidden />
+                      <span className="font-display text-sm font-semibold tabular-nums tracking-[0.12em] text-accent">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="inline-flex size-11 items-center justify-center rounded-full border border-white/15 text-ink transition-[background-color,border-color,color] duration-500 ease-out-expo group-hover:border-accent group-hover:bg-accent group-hover:text-[#0a0526]">
+                        <span className="arrow-swap size-4" aria-hidden>
+                          <ArrowUpRight weight="bold" className="size-full" />
+                          <ArrowUpRight weight="bold" className="size-full" />
+                        </span>
                       </span>
                     </div>
-                    <h3 className="mt-8 font-display text-[1.7rem] font-semibold leading-tight tracking-[-0.02em] text-ink">{offer.name}</h3>
+                    <h3 className="mt-10 font-display text-[1.7rem] font-semibold leading-tight tracking-[-0.02em] text-ink">{offer.name}</h3>
                     <p className="mt-3 text-lg leading-relaxed text-mute">{offer.description}</p>
                     <div className="mt-auto pt-8">
                       <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 border-t border-white/10 pt-6">
@@ -203,7 +208,7 @@ export function ServicePage({ area }: { area: ServiceCategory }) {
               ))}
             </ol>
 
-            <Reveal className="card-vivid mt-14 flex flex-col gap-4 rounded-3xl px-7 py-6 sm:px-10 lg:flex-row lg:items-center lg:justify-between">
+            <Reveal className="mt-14 flex flex-col gap-4 rounded-3xl border border-white/10 px-7 py-6 sm:px-10 lg:flex-row lg:items-center lg:justify-between">
               <p className="font-display text-xl font-semibold text-ink">Toda entrega termina com</p>
               <ul className="flex flex-col gap-4 sm:flex-row sm:gap-8">
                 {DONE_CRITERIA.map((c) => (
@@ -220,19 +225,19 @@ export function ServicePage({ area }: { area: ServiceCategory }) {
         {/* Toolkit + who does it */}
         <section className="py-10 md:py-16">
           <div className="mx-auto grid max-w-[1400px] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
-            <Reveal className="card-vivid rounded-3xl p-7 sm:p-10">
+            <Reveal className="panel rounded-3xl p-7 sm:p-10">
               <p className="font-display text-[0.8rem] font-light uppercase italic tracking-[0.36em] text-mute">{area.toolkit.title}</p>
               <ul className="mt-6 flex flex-wrap gap-2.5">
                 {area.toolkit.items.map((item) => (
-                  <li key={item} className="rounded-full border border-accent/35 bg-accent/12 px-4 py-2 font-medium text-ink">
+                  <li key={item} className="rounded-full border border-white/12 px-4 py-2 font-medium text-ink">
                     {item}
                   </li>
                 ))}
               </ul>
             </Reveal>
 
-            <Reveal delay={0.08} className="card-vivid flex flex-col gap-6 rounded-3xl p-7 sm:flex-row sm:items-center sm:p-10">
-              <span className="inline-flex size-20 shrink-0 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,var(--color-accent-light),var(--color-accent-strong)_60%,#24095e)] font-display text-2xl font-semibold text-white ring-1 ring-white/30">
+            <Reveal delay={0.08} className="panel flex flex-col gap-6 rounded-3xl p-7 sm:flex-row sm:items-center sm:p-10">
+              <span className="inline-flex size-20 shrink-0 items-center justify-center rounded-full border border-accent/50 font-display text-2xl font-semibold text-accent-light">
                 {owner.initials}
               </span>
               <div>
@@ -290,16 +295,21 @@ export function ServicePage({ area }: { area: ServiceCategory }) {
                   <Reveal as="li" key={c.slug} area={c.slug} delay={i * 0.06} className="h-full">
                     <Link
                       href={serviceHref(c.slug)}
-                      className="group card-vivid flex h-full flex-col rounded-3xl p-7 transition-transform duration-500 ease-out-expo hover:-translate-y-1.5 sm:p-8"
+                      className="group card-area flex h-full flex-col rounded-3xl p-7 hover:border-accent/40 sm:p-8"
                     >
-                      <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-accent text-[#0a0526]">
-                        <OtherIcon weight="bold" className="size-6" />
-                      </span>
-                      <span className="mt-6 font-display text-3xl font-semibold tracking-[-0.02em] text-ink">{c.name}</span>
+                      <OtherIcon
+                        weight="light"
+                        aria-hidden
+                        className="size-10 text-accent transition-transform duration-700 ease-out-expo group-hover:-rotate-12"
+                      />
+                      <span className="mt-8 font-display text-3xl font-semibold tracking-[-0.02em] text-ink">{c.name}</span>
                       <span className="mt-2 leading-relaxed text-mute">{c.description}</span>
-                      <span className="mt-auto inline-flex items-center gap-2 pt-6 font-semibold text-accent-light transition-colors group-hover:text-white">
-                        Conhecer
-                        <ArrowRight weight="bold" className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+                      <span className="mt-auto inline-flex items-center gap-2 pt-8 font-semibold text-accent-light transition-colors group-hover:text-white">
+                        <span className="roll">
+                          <span>Conhecer</span>
+                          <span aria-hidden>Conhecer</span>
+                        </span>
+                        <ArrowRight weight="bold" className="size-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-1" aria-hidden />
                       </span>
                     </Link>
                   </Reveal>

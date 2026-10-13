@@ -14,10 +14,8 @@ export function HeroCopy({ area, align = "left", className }: { area: ServiceCat
 
   return (
     <div className={cn(center && "mx-auto max-w-4xl text-center", className)}>
-      <p className="intro-fade inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent/12 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-accent-light">
-        <span className="inline-flex size-8 items-center justify-center rounded-full bg-accent text-[#0a0526]">
-          <Icon weight="bold" className="size-4" aria-hidden />
-        </span>
+      <p className="intro-fade inline-flex h-9 items-center gap-2 rounded-full border border-white/12 px-3.5 text-sm font-semibold text-ink">
+        <Icon weight="bold" className="size-4 text-accent" aria-hidden />
         {area.name}
       </p>
 

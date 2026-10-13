@@ -3,6 +3,7 @@ import { Manrope, Urbanist } from "next/font/google";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Header } from "@/components/ui/Header";
 import { MotionProvider } from "@/components/ui/MotionProvider";
+import { PageTransition } from "@/components/ui/PageTransition";
 import "./globals.css";
 
 const urbanist = Urbanist({
@@ -43,12 +44,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${urbanist.variable} ${manrope.variable} antialiased`}>
+    // data-scroll-behavior: Next jumps (instead of smooth-scrolling) to the top or the hash on route
+    // changes, so the new page is already in place when the PageTransition curtain lifts.
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${urbanist.variable} ${manrope.variable} antialiased`}>
       <body>
         <MotionProvider>
           <Header />
           {children}
           <FloatingWhatsApp />
+          <PageTransition />
         </MotionProvider>
       </body>
     </html>

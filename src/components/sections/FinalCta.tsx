@@ -10,7 +10,7 @@ export function FinalCta() {
       <Starfield seed={21} twinkles={5} className="-z-10 opacity-70" />
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 -z-10 h-[70%] bg-[radial-gradient(60%_60%_at_50%_100%,rgb(90_43_184/0.5),transparent_70%)]"
+        className="absolute inset-x-0 bottom-0 -z-10 h-[70%] bg-[radial-gradient(60%_60%_at_50%_100%,rgb(90_43_184/0.28),transparent_70%)]"
       />
 
       <div className="mx-auto flex max-w-[1400px] flex-col items-center px-4 text-center sm:px-6 lg:px-10">

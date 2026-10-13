@@ -76,7 +76,7 @@ function ServicesMenu() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="overflow-hidden rounded-3xl border border-white/12 bg-[#120a3b] shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9),0_0_0_1px_rgb(150_112_234/0.15)]"
+              className="overflow-hidden rounded-3xl border border-white/10 bg-surface-2 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)]"
             >
               <ul className="grid grid-cols-2 gap-1.5 p-3">
                 {serviceCategories.map((c) => {
@@ -86,10 +86,10 @@ function ServicesMenu() {
                       <Link
                         href={serviceHref(c.slug)}
                         onClick={close}
-                        className="group flex gap-4 rounded-2xl p-4 transition-colors duration-300 hover:bg-accent/12"
+                        className="group flex gap-4 rounded-2xl p-4 transition-colors duration-300 hover:bg-white/[0.04]"
                       >
-                        <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent text-[#0a0526]">
-                          <Icon weight="bold" className="size-5" aria-hidden />
+                        <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-white/10 text-accent transition-colors duration-300 group-hover:border-accent/50">
+                          <Icon weight="light" className="size-5" aria-hidden />
                         </span>
                         <span>
                           <span className="flex items-center gap-1.5 font-display text-lg font-semibold text-ink">
@@ -159,10 +159,8 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                 const Icon = SERVICE_ICONS[c.slug];
                 return (
                   <li key={c.slug} data-area={c.slug}>
-                    <Link href={serviceHref(c.slug)} onClick={onClose} className="card-vivid flex flex-col gap-4 rounded-2xl p-4">
-                      <span className="inline-flex size-11 items-center justify-center rounded-xl bg-accent text-[#0a0526]">
-                        <Icon weight="bold" className="size-5" aria-hidden />
-                      </span>
+                    <Link href={serviceHref(c.slug)} onClick={onClose} className="card-area flex flex-col gap-6 rounded-2xl p-4 active:border-accent/50">
+                      <Icon weight="light" className="size-7 text-accent" aria-hidden />
                       <span className="font-display text-xl font-semibold text-ink">{c.name}</span>
                     </Link>
                   </li>
@@ -244,7 +242,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Agendar orçamento pelo WhatsApp"
-              className="inline-flex size-11 items-center justify-center rounded-full bg-brand-500 text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25)] active:scale-[0.96] md:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-full bg-brand-500 text-white active:scale-[0.96] md:hidden"
             >
               <WhatsappLogo weight="fill" className="size-5" aria-hidden />
             </a>
@@ -254,7 +252,7 @@ export function Header() {
               aria-controls="menu-mobile"
               aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
               onClick={() => setMenuOpen((o) => !o)}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-ink active:scale-[0.96] lg:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 text-ink active:scale-[0.96] lg:hidden"
             >
               {menuOpen ? <X weight="bold" className="size-5" aria-hidden /> : <List weight="bold" className="size-5" aria-hidden />}
             </button>

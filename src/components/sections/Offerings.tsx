@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { OrbitDot } from "@/components/brand/OrbitDot";
 import { SERVICE_ICONS } from "@/components/ui/service-icons";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { packages } from "@/content/packages";
 import { serviceCategories, serviceHref } from "@/content/services";
@@ -26,12 +27,10 @@ function AreaDoors() {
           <li key={c.slug} data-area={c.slug}>
             <Link
               href={serviceHref(c.slug)}
-              className="group flex h-full flex-col justify-between rounded-2xl border border-accent/35 bg-accent/10 p-3 transition-[transform,background-color,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-accent hover:bg-accent/20"
+              className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 p-3 transition-[background-color,border-color] duration-300 ease-out-expo hover:border-accent/60 hover:bg-accent/[0.08]"
             >
               <span className="flex items-start justify-between">
-                <span className="inline-flex size-9 items-center justify-center rounded-xl bg-accent text-[#0a0526]">
-                  <Icon weight="bold" className="size-5" />
-                </span>
+                <Icon weight="light" className="size-6 text-accent transition-transform duration-500 ease-out-expo group-hover:-rotate-12" />
                 <ArrowUpRight
                   weight="bold"
                   aria-hidden
@@ -52,7 +51,7 @@ function PackageOrbits() {
   const rings = [44, 66, 88, 110];
   return (
     <div aria-hidden className="flex h-full items-center gap-4">
-      <div className="relative aspect-square h-full max-h-48 shrink-0">
+      <div className="relative aspect-square h-full max-h-32 shrink-0 sm:max-h-48">
         <svg viewBox="-125 -125 250 250" className="absolute inset-0 h-full w-full overflow-visible">
           <g transform="rotate(-30)" fill="none">
             {rings.map((rx, i) => (
@@ -143,26 +142,27 @@ type FormatCardProps = {
   tone: "soft" | "deep" | "bright";
 };
 
+// Same flat card, three tones: the progression reads in the surface, not in glow.
 const TONES = {
   soft: {
-    card: "card-vivid",
-    visual: "bg-[radial-gradient(120%_100%_at_50%_0%,rgb(119_68_219/0.22),transparent_70%)] border-white/[0.07]",
+    card: "panel",
+    visual: "border-white/[0.07]",
     step: "text-brand-300",
     muted: "text-mute",
     label: "text-faint",
     action: "text-brand-200 hover:text-white",
   },
   deep: {
-    card: "border border-brand-400/30 bg-[linear-gradient(165deg,#25105f_0%,#150a49_55%,#0c0630_100%)] shadow-[0_30px_70px_-35px_rgb(119_68_219/0.7),inset_0_1px_0_rgb(255_255_255/0.1)]",
-    visual: "bg-[radial-gradient(120%_100%_at_50%_0%,rgb(150_112_234/0.28),transparent_70%)] border-white/10",
+    card: "border border-white/10 bg-surface-2",
+    visual: "border-white/[0.08]",
     step: "text-brand-200",
     muted: "text-mute",
     label: "text-brand-300/80",
     action: "text-brand-200 hover:text-white",
   },
   bright: {
-    card: "border border-white/25 bg-[linear-gradient(160deg,#7d48ea_0%,#5426c0_45%,#2e0d78_100%)] text-white shadow-[0_40px_90px_-30px_rgb(119_68_219/0.85),inset_0_1px_0_rgb(255_255_255/0.25)]",
-    visual: "bg-[radial-gradient(120%_100%_at_50%_0%,rgb(255_255_255/0.16),transparent_70%)] border-white/15",
+    card: "card-accent",
+    visual: "border-white/15",
     step: "text-white",
     muted: "text-white/80",
     label: "text-white/60",
@@ -219,8 +219,10 @@ export function Offerings() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-3xl">
           <p className="font-display text-[0.85rem] font-light uppercase italic tracking-[0.42em] text-mute">Como contratar</p>
-          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-            Contrate do seu <span className="text-violet pr-[0.06em] font-light italic">jeito.</span>
+          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
+            <SplitText>
+              Contrate do seu <span className="text-violet pr-[0.06em] font-light italic">jeito.</span>
+            </SplitText>
           </h2>
           <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-mute">
             Três formatos que se completam: comece por um serviço, ganhe constância com um pacote mensal ou junte pacote e site em um
@@ -250,7 +252,7 @@ export function Offerings() {
         </Reveal>
 
         <ol className="mt-12 grid gap-5 lg:mt-6 lg:grid-cols-3">
-          <Reveal as="li" className="h-full">
+          <Reveal as="li" className="h-full min-w-0">
             <FormatCard
               step={1}
               tone="soft"
@@ -263,7 +265,7 @@ export function Offerings() {
             />
           </Reveal>
 
-          <Reveal as="li" delay={0.08} className="h-full">
+          <Reveal as="li" delay={0.08} className="h-full min-w-0">
             <FormatCard
               step={2}
               tone="deep"
@@ -276,7 +278,7 @@ export function Offerings() {
             />
           </Reveal>
 
-          <Reveal as="li" delay={0.16} className="h-full">
+          <Reveal as="li" delay={0.16} className="h-full min-w-0">
             <FormatCard
               step={3}
               tone="bright"

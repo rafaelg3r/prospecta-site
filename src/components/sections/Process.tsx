@@ -3,6 +3,7 @@
 import { m, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 
 const STEPS = [
   { name: "Diagnóstico", text: "Entendemos seu negócio, seu público e onde você está perdendo clientes hoje." },
@@ -26,7 +27,7 @@ function ArcNode({ progress, node }: { progress: MotionValue<number>; node: (typ
   return (
     <span className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: node.left, top: node.top }}>
       <span className="relative flex size-5 items-center justify-center rounded-full border border-white/25 bg-void">
-        <m.span className="size-2.5 rounded-full bg-brand-300 shadow-[0_0_18px_4px_rgb(150_112_234/0.6)]" style={{ opacity: lit, scale }} />
+        <m.span className="size-2.5 rounded-full bg-brand-200" style={{ opacity: lit, scale }} />
       </span>
     </span>
   );
@@ -41,8 +42,10 @@ export function Process() {
     <section id="metodo" className="py-24 md:py-36">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-3xl">
-          <h2 className="font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-            Um método claro, do primeiro contato ao <span className="text-violet pr-[0.06em] font-light italic">resultado.</span>
+          <h2 className="font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
+            <SplitText>
+              Um método claro, do primeiro contato ao <span className="text-violet pr-[0.06em] font-light italic">resultado.</span>
+            </SplitText>
           </h2>
         </Reveal>
 
@@ -77,7 +80,7 @@ export function Process() {
               <Reveal as="li" key={step.name} delay={i * 0.1} className="relative lg:text-center">
                 <span
                   aria-hidden
-                  className="absolute -left-[calc(2rem+5px)] top-3 size-2.5 rounded-full bg-brand-400 shadow-[0_0_14px_3px_rgb(150_112_234/0.5)] lg:hidden"
+                  className="absolute -left-[calc(2rem+5px)] top-3 size-2.5 rounded-full bg-brand-300 ring-4 ring-void lg:hidden"
                 />
                 <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] text-ink md:text-4xl">{step.name}</h3>
                 <p className="mt-3 leading-relaxed text-mute lg:mx-auto lg:max-w-[28ch]">{step.text}</p>

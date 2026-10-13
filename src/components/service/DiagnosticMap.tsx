@@ -19,16 +19,10 @@ const CHAPTERS = [
 export function DiagnosticMap() {
   return (
     <Reveal className="relative mx-auto max-w-5xl">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-y-10 inset-x-0 -z-10 lg:-inset-x-10 bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_28%,transparent),transparent)]"
-      />
-      <div className="card-vivid overflow-hidden rounded-3xl">
+      <div className="card-area overflow-hidden rounded-3xl">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-7 py-6 sm:px-10">
           <p className="flex items-center gap-3 font-display text-xl font-semibold text-ink">
-            <span className="inline-flex size-10 items-center justify-center rounded-xl bg-accent text-[#0a0526]">
-              <FileText weight="light" className="size-5" aria-hidden />
-            </span>
+            <FileText weight="light" className="size-7 text-accent" aria-hidden />
             Diagnóstico Digital
           </p>
           <p className="font-display text-sm font-light uppercase italic tracking-[0.32em] text-mute">Sumário</p>
