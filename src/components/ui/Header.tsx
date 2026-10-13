@@ -4,6 +4,7 @@ import { ArrowRight, CaretDown, List, WhatsappLogo, X } from "@phosphor-icons/re
 import { AnimatePresence, m, useMotionValueEvent, useScroll } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState, type RefObject } from "react";
+import { ProspectaMark } from "@/components/brand/ProspectaMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { SERVICE_ICONS } from "@/components/ui/service-icons";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
@@ -212,7 +213,8 @@ export function Header() {
         )}
       >
         <div className="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-10">
-          <Link href="/" onClick={() => setMenuOpen(false)} className="text-[1.05rem] sm:text-[1.15rem]">
+          <Link href="/" onClick={() => setMenuOpen(false)} className="group inline-flex items-center gap-2.5 text-[1.05rem] sm:gap-3 sm:text-[1.15rem]">
+            <ProspectaMark className="h-8 w-auto transition-transform duration-700 ease-out-expo group-hover:-rotate-12 sm:h-9" />
             <Wordmark />
             <span className="sr-only">, início</span>
           </Link>

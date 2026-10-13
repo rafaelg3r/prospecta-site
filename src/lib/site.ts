@@ -1,7 +1,7 @@
 // Single source of truth for contact data. Change the number here and every
 // CTA on the site follows.
-export const WHATSAPP_NUMBER = "5555999668247"; // +55 (55) 99966-8247
-export const WHATSAPP_DISPLAY = "(55) 99966-8247";
+export const WHATSAPP_NUMBER = "5555996468247"; // +55 (55) 99646-8247
+export const WHATSAPP_DISPLAY = "(55) 99646-8247";
 
 export const INSTAGRAM_URL = "https://www.instagram.com/prospecta_studio";
 export const INSTAGRAM_HANDLE = "@prospecta_studio";
