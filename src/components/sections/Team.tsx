@@ -1,23 +1,7 @@
 import { Reveal } from "@/components/ui/Reveal";
+import { TEAM } from "@/content/team";
 import { cn } from "@/lib/cn";
 
-// Source: Notion > EMPRESA > Sócios.
-const TEAM = [
-  {
-    initials: "RV",
-    name: "Rafael C. Vedana",
-    role: "Design & Web",
-    bio: "Cuida de tudo o que a sua marca mostra: sites, landing pages, interfaces, animações, social design e identidade visual.",
-    skills: ["Next.js e React", "Interfaces", "Identidade visual"],
-  },
-  {
-    initials: "AM",
-    name: "Alison Morais",
-    role: "Estratégia & Vídeo",
-    bio: "Cuida de tudo o que a sua marca diz: vendas, mercado, concorrência e conversão, além dos roteiros e da edição dos vídeos.",
-    skills: ["Conversão", "Roteiros", "Edição de vídeo"],
-  },
-];
 
 function Monogram({ initials, flip }: { initials: string; flip?: boolean }) {
   return (

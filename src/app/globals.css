@@ -305,6 +305,11 @@ section[id] {
     radial-gradient(circle var(--notch) at 100% 0, #0000 calc(100% - 0.5px), #000);
 }
 
+/* Reel anatomy (Vídeo page): looping playhead, same scaleX trick as the showcase timer. */
+@media (prefers-reduced-motion: no-preference) {
+  .reel-progress { animation: showcase-progress 9s linear infinite; }
+}
+
 /* FAQ: animate <details> open/close where the browser supports it. */
 details.faq::details-content {
   block-size: 0;

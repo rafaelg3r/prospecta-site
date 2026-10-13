@@ -1,4 +1,5 @@
-import { ArrowDownRight, ArrowUpRight, Browsers, FilmSlate, InstagramLogo, PenNib, Strategy } from "@phosphor-icons/react/dist/ssr";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Browsers, FilmSlate, InstagramLogo, PenNib, Strategy } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
 import type { ComponentType, ReactNode } from "react";
 import { DesignGallery } from "@/components/sections/services/DesignGallery";
 import { WebShowcase } from "@/components/sections/services/WebShowcase";
@@ -6,13 +7,13 @@ import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { DESIGN_INSTAGRAM_URL } from "@/content/portfolio";
-import { serviceCategories, type ServiceCategory } from "@/content/services";
+import { serviceCategories, serviceHref, type ServiceCategory } from "@/content/services";
 import { cn } from "@/lib/cn";
 import { whatsappLink } from "@/lib/site";
 
 type IconType = ComponentType<{ className?: string; weight?: "light" | "regular" | "bold" | "fill" | "duotone" | "thin" }>;
 
-const ICONS: Record<ServiceCategory["slug"], IconType> = {
+export const SERVICE_ICONS: Record<ServiceCategory["slug"], IconType> = {
   web: Browsers,
   estrategia: Strategy,
   design: PenNib,
@@ -24,7 +25,7 @@ const category = (slug: ServiceCategory["slug"]) => serviceCategories.find((c) =
 const quoteMessage = (what: string) => `Olá, Prospecta! Vim pelo site e gostaria de agendar um orçamento de ${what}.`;
 
 function CategoryHeading({ slug, onViolet = false }: { slug: ServiceCategory["slug"]; onViolet?: boolean }) {
-  const Icon = ICONS[slug];
+  const Icon = SERVICE_ICONS[slug];
   const c = category(slug);
   return (
     <>
@@ -40,6 +41,16 @@ function CategoryHeading({ slug, onViolet = false }: { slug: ServiceCategory["sl
         {c.name}
       </h3>
       <p className={cn("mt-4 max-w-[40ch] text-lg leading-relaxed", onViolet ? "text-white/80" : "text-mute")}>{c.description}</p>
+      <Link
+        href={serviceHref(slug)}
+        className={cn(
+          "group mt-4 inline-flex items-center gap-2 font-semibold transition-colors",
+          onViolet ? "text-white hover:text-brand-200" : "text-brand-200 hover:text-white",
+        )}
+      >
+        Conhecer a área de {c.name}
+        <ArrowRight weight="bold" className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-1" aria-hidden />
+      </Link>
     </>
   );
 }
@@ -48,7 +59,7 @@ function CategoryHeading({ slug, onViolet = false }: { slug: ServiceCategory["sl
 function ServiceChips({ slug, onViolet = false }: { slug: ServiceCategory["slug"]; onViolet?: boolean }) {
   return (
     <ul className="mt-7 flex flex-wrap gap-2">
-      {category(slug).services.map((service) => (
+      {category(slug).offers.map(({ name: service }) => (
         <li key={service}>
           <a
             href={whatsappLink(quoteMessage(service))}
