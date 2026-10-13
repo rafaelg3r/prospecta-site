@@ -36,7 +36,7 @@ export function WebHero({ area }: { area: ServiceCategory }) {
       <Starfield seed={11} className="-z-10 opacity-70" />
       <div
         aria-hidden
-        className="absolute left-1/2 top-[42%] -z-10 aspect-square w-[min(1200px,160vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(119_68_219/0.42),transparent)]"
+        className="absolute left-1/2 top-[42%] -z-10 aspect-square w-[min(1200px,160vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(119_68_219/0.24),transparent)]"
       />
 
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
@@ -55,8 +55,7 @@ export function WebHero({ area }: { area: ServiceCategory }) {
               )}
               style={{ animationDelay: `${i * -3}s` }}
             >
-              <span className="flex items-center gap-2 rounded-full border border-accent/40 bg-[#120a3b] px-4 py-2 text-sm font-semibold text-ink shadow-[0_18px_40px_-16px_rgb(0_0_0/0.9)]">
-                <span className="size-2 rounded-full bg-accent" />
+              <span className="flex items-center gap-2 rounded-full border border-white/12 bg-surface-2 px-4 py-2 text-sm font-semibold text-ink shadow-[0_18px_40px_-16px_rgb(0_0_0/0.9)]">
                 {chip}
               </span>
             </span>
@@ -64,7 +63,7 @@ export function WebHero({ area }: { area: ServiceCategory }) {
 
           <div className="[perspective:2200px]">
             <div className="origin-top md:[transform:rotateX(9deg)]">
-              <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#0d0a1f] shadow-[0_70px_140px_-50px_rgb(119_68_219/0.85),0_0_0_1px_rgb(255_255_255/0.05)] sm:rounded-3xl">
+              <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#0d0a1f] shadow-[0_60px_120px_-50px_rgb(0_0_0/0.95)] sm:rounded-3xl">
                 {/* Tabs: the web offers */}
                 <div className="flex items-end gap-3 border-b border-white/[0.08] bg-white/[0.03] px-4 pt-3">
                   <div aria-hidden className="mb-3 flex gap-1.5">

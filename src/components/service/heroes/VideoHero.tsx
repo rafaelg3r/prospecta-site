@@ -24,7 +24,7 @@ export function VideoHero({ area }: { area: ServiceCategory }) {
       <Starfield seed={31} className="-z-10 opacity-50" />
       <div
         aria-hidden
-        className="absolute -left-[15%] top-[5%] -z-10 aspect-square w-[min(1000px,140vw)] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_26%,transparent),transparent)]"
+        className="absolute -left-[15%] top-[5%] -z-10 aspect-square w-[min(1000px,140vw)] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_16%,transparent),transparent)]"
       />
       {/* Letterbox bars: the page opens like a film frame */}
       <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-6 bg-black/50 md:h-10" />
@@ -32,7 +32,7 @@ export function VideoHero({ area }: { area: ServiceCategory }) {
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-4 pb-16 pt-14 sm:px-6 md:pb-24 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 lg:px-10 lg:pt-20">
         <HeroCopy area={area} />
 
-        <div aria-hidden className="intro-fade card-vivid rounded-3xl p-3 sm:p-4" style={delay(0.2)}>
+        <div aria-hidden className="intro-fade panel rounded-3xl p-3 sm:p-4" style={delay(0.2)}>
           <div className="flex items-center justify-between px-2 pb-3 text-xs font-semibold uppercase tracking-[0.18em]">
             <span className="flex items-center gap-2 text-ink">
               <span className="hero-rec size-2.5 rounded-full bg-[#ff4d4d] shadow-[0_0_12px_2px_rgb(255_77_77/0.6)]" />

@@ -7,6 +7,7 @@ import { OrbitDot } from "@/components/brand/OrbitDot";
 import { ProspectaMark } from "@/components/brand/ProspectaMark";
 import { ComboBuilder, comboPackages } from "@/components/sections/packages/ComboBuilder";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { packageGuarantees, packages, type Package } from "@/content/packages";
@@ -28,7 +29,7 @@ function PackageOrbit({ active }: { active: number }) {
   return (
     <div className="relative" aria-hidden>
       <div className="relative aspect-[80/54] w-full">
-        <div className="absolute inset-x-[18%] inset-y-0 rounded-full bg-[radial-gradient(closest-side,rgb(119_68_219/0.32)_0%,transparent_100%)]" />
+        <div className="absolute inset-x-[18%] inset-y-0 rounded-full bg-[radial-gradient(closest-side,rgb(119_68_219/0.16)_0%,transparent_100%)]" />
         <svg viewBox="-400 -270 800 540" className="absolute inset-0 h-full w-full overflow-visible">
           <defs>
             <linearGradient id="pkg-ring" x1="0" y1="0" x2="1" y2="1">
@@ -117,10 +118,8 @@ function TierGlyph({ level }: { level: number }) {
 function ComboStrip({ pkg, onCombo }: { pkg: Package; onCombo: (slug: string) => void }) {
   if (pkg.includesSite) {
     return (
-      <p className="mt-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-ink/90">
-        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-200">
-          <Browsers weight="light" className="size-5" aria-hidden />
-        </span>
+      <p className="mt-8 flex items-center gap-4 rounded-2xl border border-white/10 px-5 py-4 text-ink/90">
+        <Browsers weight="light" className="size-6 shrink-0 text-brand-300" aria-hidden />
         Site ou landing page já incluso, sem precisar de combo.
       </p>
     );
@@ -130,11 +129,9 @@ function ComboStrip({ pkg, onCombo }: { pkg: Package; onCombo: (slug: string) =>
     <a
       href="#combos"
       onClick={() => onCombo(pkg.slug)}
-      className="group mt-8 flex items-center gap-4 rounded-2xl border border-dashed border-brand-400/45 bg-brand-500/[0.07] px-5 py-4 transition-colors duration-300 hover:border-brand-300/80 hover:bg-brand-500/[0.14]"
+      className="group mt-8 flex items-center gap-4 rounded-2xl border border-dashed border-brand-400/40 px-5 py-4 transition-colors duration-300 hover:border-brand-300/80 hover:bg-brand-500/[0.08]"
     >
-      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-200">
-        <Browsers weight="light" className="size-5" aria-hidden />
-      </span>
+      <Browsers weight="light" className="size-6 shrink-0 text-brand-300" aria-hidden />
       <span className="min-w-0 flex-1">
         <span className="block font-semibold text-ink">Quer um site junto?</span>
         <span className="block text-sm text-mute">Vire combo: {COMBO_DISCOUNT_LABEL}.</span>
@@ -170,17 +167,9 @@ function PackageCard({ pkg, index, onActive, onCombo }: PackageCardProps) {
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "relative isolate overflow-hidden rounded-3xl p-7 sm:p-10",
-        pkg.featured
-          ? "border border-transparent [background:linear-gradient(#0c0630,#0c0630)_padding-box,linear-gradient(135deg,#b49cf5,#5a2bb8_45%,#24095e_70%,#9670ea)_border-box] shadow-[0_30px_80px_-30px_rgb(119_68_219/0.6)]"
-          : "card-vivid",
+        pkg.featured ? "border border-brand-400/45 bg-surface-2" : "panel",
       )}
     >
-      {pkg.featured && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 -z-10 size-80 rounded-full bg-[radial-gradient(circle,rgb(119_68_219/0.45),transparent_70%)]"
-        />
-      )}
 
       <div className="flex items-start justify-between gap-4">
         <h3 className="flex flex-col">
@@ -192,9 +181,7 @@ function PackageCard({ pkg, index, onActive, onCombo }: PackageCardProps) {
         <div className="flex flex-col items-end gap-3">
           <TierGlyph level={index} />
           {pkg.featured && (
-            <span className="rounded-full bg-brand-500/20 px-3 py-1 text-xs font-semibold text-brand-200 ring-1 ring-brand-400/40">
-              Mais completo
-            </span>
+            <span className="rounded-full bg-brand-200 px-3 py-1 text-xs font-bold text-brand-800">Mais completo</span>
           )}
         </div>
       </div>
@@ -211,9 +198,7 @@ function PackageCard({ pkg, index, onActive, onCombo }: PackageCardProps) {
       <ul className="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
         {pkg.deliverables.map((item) => (
           <li key={item} className="flex items-center gap-3 text-ink/90">
-            <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
-              <Check weight="bold" className="size-3.5" aria-hidden />
-            </span>
+            <Check weight="bold" className="size-4 shrink-0 text-brand-300" aria-hidden />
             {item}
           </li>
         ))}
@@ -239,8 +224,10 @@ export function Packages() {
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
           <Reveal className="max-w-3xl">
             <p className="font-display text-[0.85rem] font-light uppercase italic tracking-[0.42em] text-mute">Pacotes mensais</p>
-            <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-              Escolha o seu <span className="text-violet pr-[0.06em] font-light italic">plano.</span>
+            <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
+              <SplitText>
+                Escolha o seu <span className="text-violet pr-[0.06em] font-light italic">plano.</span>
+              </SplitText>
             </h2>
             <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
               Quatro níveis de acompanhamento mensal, do essencial ao completo. Quer um site novo junto? Transforme o pacote em um

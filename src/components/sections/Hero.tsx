@@ -59,7 +59,7 @@ export function Hero() {
             </Magnetic>
             <a
               href="#pacotes"
-              className="group inline-flex h-14 items-center gap-2 rounded-full px-4 text-base font-semibold text-ink transition-colors hover:text-brand-300 md:h-16"
+              className="group inline-flex h-14 items-center gap-2 rounded-full px-4 text-base font-semibold text-ink transition-colors hover:text-brand-300"
             >
               Ver pacotes
               <ArrowDownRight

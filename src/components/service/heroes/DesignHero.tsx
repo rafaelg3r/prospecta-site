@@ -25,11 +25,11 @@ export function DesignHero({ area }: { area: ServiceCategory }) {
       <Starfield seed={23} className="-z-10 opacity-60" />
       <div
         aria-hidden
-        className="absolute -right-[20%] top-[10%] -z-10 aspect-square w-[min(1000px,140vw)] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_32%,transparent),transparent)]"
+        className="absolute -right-[20%] top-[10%] -z-10 aspect-square w-[min(1000px,140vw)] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_18%,transparent),transparent)]"
       />
       <div
         aria-hidden
-        className="absolute -left-[25%] bottom-[-20%] -z-10 aspect-square w-[min(900px,120vw)] rounded-full bg-[radial-gradient(closest-side,rgb(119_68_219/0.35),transparent)]"
+        className="absolute -left-[25%] bottom-[-20%] -z-10 aspect-square w-[min(900px,120vw)] rounded-full bg-[radial-gradient(closest-side,rgb(119_68_219/0.2),transparent)]"
       />
 
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-4 pb-16 pt-14 sm:px-6 md:pb-24 lg:grid-cols-[1.02fr_1fr] lg:gap-10 lg:px-10 lg:pt-20">
@@ -56,7 +56,7 @@ export function DesignHero({ area }: { area: ServiceCategory }) {
             </figure>
           ))}
 
-          <div className="card-vivid absolute bottom-[3%] left-[2%] z-30 rounded-2xl p-3 sm:p-4">
+          <div className="panel absolute bottom-[3%] left-[2%] z-30 rounded-2xl p-3 sm:p-4">
             <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-accent-light sm:text-xs">Paleta</p>
             <div aria-hidden className="mt-2 flex gap-1.5 sm:gap-2">
               {SWATCHES.map((swatch) => (
@@ -65,7 +65,7 @@ export function DesignHero({ area }: { area: ServiceCategory }) {
             </div>
           </div>
 
-          <div className="card-vivid absolute bottom-[8%] right-[2%] z-30 rounded-2xl px-4 py-3 sm:px-5 sm:py-4">
+          <div className="panel absolute bottom-[8%] right-[2%] z-30 rounded-2xl px-4 py-3 sm:px-5 sm:py-4">
             <p aria-hidden className="font-display text-5xl font-semibold leading-none text-accent-gradient sm:text-6xl">
               Aa
             </p>

@@ -1,10 +1,11 @@
-import { ArrowDownRight, ArrowUpRight, FilmSlate, InstagramLogo } from "@phosphor-icons/react/dist/ssr";
+import { ArrowDownRight, ArrowUpRight, InstagramLogo } from "@phosphor-icons/react/dist/ssr";
 import type { ReactNode } from "react";
 import { DesignGallery } from "@/components/sections/services/DesignGallery";
 import { WebShowcase } from "@/components/sections/services/WebShowcase";
 import { AreaLink } from "@/components/ui/AreaLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { SERVICE_ICONS } from "@/components/ui/service-icons";
+import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { DESIGN_INSTAGRAM_URL } from "@/content/portfolio";
@@ -21,24 +22,14 @@ function CategoryHeading({ slug, onViolet = false }: { slug: ServiceCategory["sl
   const c = category(slug);
   return (
     <>
-      <span
-        data-area={slug}
-        className={cn(
-          "inline-flex size-14 items-center justify-center rounded-full border",
-          onViolet ? "border-white/30 bg-white/15 text-white" : "border-accent/40 bg-accent/15 text-accent-light",
-        )}
-      >
-        <Icon weight="light" className="size-7" />
+      <span data-area={slug} className={cn("block", onViolet ? "text-white" : "text-accent")}>
+        <Icon weight="light" className="size-10" aria-hidden />
       </span>
-      <h3 className="mt-6 font-display text-[clamp(2.6rem,4.6vw,3.8rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
+      <h3 className="mt-5 font-display text-[clamp(2.6rem,4.6vw,3.8rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
         {c.name}
       </h3>
       <p className={cn("mt-4 max-w-[40ch] text-lg leading-relaxed", onViolet ? "text-white/80" : "text-mute")}>{c.description}</p>
-      <AreaLink
-        slug={slug}
-        label={`Tudo sobre ${c.name}`}
-        className={cn("mt-6", onViolet && "border-white/40 bg-white/15 hover:border-white hover:bg-white/25")}
-      />
+      <AreaLink slug={slug} label={`Tudo sobre ${c.name}`} tone={onViolet ? "onAccent" : "default"} className="mt-6" />
     </>
   );
 }
@@ -54,10 +45,10 @@ function ServiceChips({ slug, onViolet = false }: { slug: ServiceCategory["slug"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "group inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300",
+              "group inline-flex h-9 items-center gap-1.5 rounded-full border px-4 text-sm font-medium transition-colors duration-300",
               onViolet
                 ? "border-white/25 bg-white/10 text-white hover:bg-white/20"
-                : "border-white/12 bg-white/[0.04] text-ink hover:border-brand-400/50 hover:bg-brand-500/15",
+                : "border-white/12 text-ink hover:border-white/30 hover:bg-white/[0.04]",
             )}
           >
             {service}
@@ -87,8 +78,10 @@ export function Services() {
     <section id="servicos" className="py-24 md:py-36">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-3xl">
-          <h2 className="font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-            Tudo o que a sua presença digital <span className="text-violet pr-[0.06em] font-light italic">precisa.</span>
+          <h2 className="font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
+            <SplitText>
+              Tudo o que a sua presença digital <span className="text-violet pr-[0.06em] font-light italic">precisa.</span>
+            </SplitText>
           </h2>
           <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
             Contrate de forma avulsa, dentro de um pacote ou em um combo com site. Veja alguns trabalhos e toque em um serviço para agendar seu orçamento.
@@ -146,7 +139,6 @@ export function Services() {
         {/* Video + Strategy: two bold cards, no invented cases */}
         <div className="mt-28 grid gap-5 md:mt-40 lg:grid-cols-2">
           <Reveal area="video" className="card-accent relative isolate overflow-hidden rounded-3xl p-7 sm:p-10">
-            <FilmSlate aria-hidden weight="thin" className="pointer-events-none absolute -bottom-10 -right-8 -z-10 size-64 text-white/10" />
             <CategoryHeading slug="video" onViolet />
             <ol className="mt-8 space-y-5 text-white">
               <Step title="Roteiro">A ideia, o gancho dos primeiros segundos e a chamada para ação.</Step>
@@ -157,10 +149,10 @@ export function Services() {
             <WhatsAppButton variant="light" className="mt-9" message={quoteMessage("vídeo")} />
           </Reveal>
 
-          <Reveal delay={0.1} area="estrategia" className="card-vivid overflow-hidden rounded-3xl p-7 sm:p-10">
+          <Reveal delay={0.1} area="estrategia" className="card-area overflow-hidden rounded-3xl p-7 sm:p-10">
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-20 -top-20 -z-10 size-72 rounded-full border border-accent/30 [box-shadow:0_0_0_32px_rgb(255_255_255/0.025),0_0_0_70px_rgb(255_255_255/0.015)]"
+              className="pointer-events-none absolute -right-20 -top-20 -z-10 size-72 rounded-full border border-accent/25 [box-shadow:0_0_0_32px_rgb(255_255_255/0.02),0_0_0_70px_rgb(255_255_255/0.012)]"
             />
             <CategoryHeading slug="estrategia" />
             <ol className="mt-8 space-y-5 text-ink">

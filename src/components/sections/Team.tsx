@@ -1,9 +1,9 @@
 import { AreaLink } from "@/components/ui/AreaLink";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 import { serviceCategories } from "@/content/services";
 import { TEAM } from "@/content/team";
 import { cn } from "@/lib/cn";
-
 
 function Monogram({ initials, flip }: { initials: string; flip?: boolean }) {
   return (
@@ -33,8 +33,10 @@ export function Team() {
     <section id="quem-faz" className="py-24 md:py-36">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <Reveal className="max-w-3xl">
-          <h2 className="font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-            Design e estratégia na <span className="text-violet pr-[0.06em] font-light italic">mesma mesa.</span>
+          <h2 className="font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
+            <SplitText>
+              Design e estratégia na <span className="text-violet pr-[0.06em] font-light italic">mesma mesa.</span>
+            </SplitText>
           </h2>
           <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
             Quem atende você é quem faz. Sem intermediários entre a sua ideia e a entrega.
@@ -46,7 +48,7 @@ export function Team() {
             <Reveal
               key={person.name}
               delay={i * 0.12}
-              className={cn("card-vivid overflow-hidden rounded-3xl p-7 sm:p-10", i === 1 && "lg:mt-24")}
+              className={cn("panel overflow-hidden rounded-3xl p-7 sm:p-10", i === 1 && "lg:mt-24")}
             >
               <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
                 <Monogram initials={person.initials} flip={i === 1} />
@@ -60,7 +62,7 @@ export function Team() {
               <p className="mt-8 max-w-[48ch] text-lg leading-relaxed text-mute">{person.bio}</p>
               <ul className="mt-8 flex flex-wrap gap-2">
                 {person.skills.map((skill) => (
-                  <li key={skill} className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-ink/85">
+                  <li key={skill} className="rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-ink/85">
                     {skill}
                   </li>
                 ))}

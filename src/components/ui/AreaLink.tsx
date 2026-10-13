@@ -8,36 +8,41 @@ type AreaLinkProps = {
   slug: ServiceSlug;
   label: string;
   size?: "sm" | "md";
+  /** "onAccent" for use on a card-accent surface, where the accent icon would vanish. */
+  tone?: "default" | "onAccent";
   className?: string;
 };
 
-// Navigation pill to an area page, tinted with that area's accent. Not a CTA:
-// quotes still go through WhatsAppButton.
-export function AreaLink({ slug, label, size = "md", className }: AreaLinkProps) {
+// Outlined navigation pill to an area page; the icon carries the area accent.
+// Not a CTA: quotes still go through WhatsAppButton.
+export function AreaLink({ slug, label, size = "md", tone = "default", className }: AreaLinkProps) {
   const Icon = SERVICE_ICONS[slug];
+  const onAccent = tone === "onAccent";
   return (
     <Link
       href={serviceHref(slug)}
       data-area={slug}
       className={cn(
-        "group inline-flex shrink-0 items-center gap-2.5 rounded-full border border-accent/45 bg-accent/12 font-semibold text-ink transition-[transform,background-color,border-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:border-accent hover:bg-accent/22",
-        size === "md" ? "h-12 pl-1.5 pr-5 text-base" : "h-9 pl-1 pr-3.5 text-sm",
+        "group inline-flex shrink-0 items-center gap-2 rounded-full border font-semibold transition-[border-color,background-color] duration-300 ease-out-expo",
+        size === "md" ? "h-10 px-4 text-[0.9rem]" : "h-9 px-3.5 text-sm",
+        onAccent
+          ? "border-white/30 text-white hover:border-white/70 hover:bg-white/10"
+          : "border-white/12 text-ink hover:border-accent/55 hover:bg-accent/[0.08]",
         className,
       )}
     >
-      <span
-        className={cn(
-          "inline-flex items-center justify-center rounded-full bg-accent text-[#0a0526]",
-          size === "md" ? "size-9" : "size-7",
-        )}
-      >
-        <Icon weight="bold" className={size === "md" ? "size-4.5" : "size-3.5"} aria-hidden />
+      <Icon weight="bold" className={cn("size-4", onAccent ? "text-white" : "text-accent")} aria-hidden />
+      <span className="roll">
+        <span>{label}</span>
+        <span aria-hidden>{label}</span>
       </span>
-      {label}
       <ArrowRight
         weight="bold"
         aria-hidden
-        className="size-4 text-accent-light transition-transform duration-300 ease-out-expo group-hover:translate-x-1"
+        className={cn(
+          "size-3.5 transition-transform duration-500 ease-out-expo group-hover:translate-x-0.5",
+          onAccent ? "text-white/80" : "text-accent-light",
+        )}
       />
     </Link>
   );

@@ -24,7 +24,7 @@ export function StrategyHero({ area }: { area: ServiceCategory }) {
       <Starfield seed={41} className="-z-10 opacity-60" />
       <div
         aria-hidden
-        className="absolute -right-[15%] top-[0%] -z-10 aspect-square w-[min(1100px,150vw)] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_22%,transparent),transparent)]"
+        className="absolute -right-[15%] top-[0%] -z-10 aspect-square w-[min(1100px,150vw)] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_14%,transparent),transparent)]"
       />
 
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-4 pb-16 pt-14 sm:px-6 md:pb-24 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-10 lg:pt-20">

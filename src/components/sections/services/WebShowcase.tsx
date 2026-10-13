@@ -40,7 +40,7 @@ export function WebShowcase() {
       onBlurCapture={() => setPaused(false)}
     >
       {/* Browser frame */}
-      <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#0d0a1f] shadow-[0_40px_90px_-30px_rgb(61_20_148/0.7),0_0_0_1px_rgb(255_255_255/0.04)]">
+      <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#0d0a1f] shadow-[0_40px_90px_-40px_rgb(0_0_0/0.9)]">
         <div className="flex items-center gap-3 border-b border-white/[0.07] px-4 py-3">
           <div className="flex gap-1.5" aria-hidden>
             <span className="size-2.5 rounded-full bg-white/15" />
@@ -83,7 +83,7 @@ export function WebShowcase() {
             onClick={() => pick(i)}
             className={cn(
               "relative overflow-hidden rounded-2xl border px-3 py-3 text-left transition-colors duration-300 sm:px-4",
-              i === active ? "border-brand-400/60 bg-brand-500/15" : "border-white/10 bg-white/[0.03] hover:bg-white/[0.07]",
+              i === active ? "border-brand-300/60 bg-brand-500/[0.12]" : "border-white/10 hover:border-white/25",
             )}
           >
             <span className="block font-display text-sm font-semibold leading-tight text-ink sm:truncate sm:text-base">{p.name}</span>

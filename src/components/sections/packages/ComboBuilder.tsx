@@ -5,6 +5,7 @@ import { AnimatePresence, m } from "motion/react";
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { COMBO_DISCOUNT_LABEL, COMBO_SITE_DISCOUNT, comboSitePrice, sites } from "@/content/combos";
 import { packages } from "@/content/packages";
@@ -50,7 +51,7 @@ function Option({ name, value, checked, onSelect, title, detail }: OptionProps) 
     <label
       className={cn(
         "flex cursor-pointer items-center gap-3 rounded-full border px-4 py-2.5 transition-colors duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-300 sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4",
-        checked ? "border-brand-400/60 bg-brand-500/15" : "border-white/10 bg-white/[0.03] hover:border-white/25",
+        checked ? "border-brand-300/70 bg-brand-500/[0.12]" : "border-white/10 hover:border-white/25",
       )}
     >
       <input type="radio" name={name} value={value} checked={checked} onChange={() => onSelect(value)} className="sr-only" />
@@ -106,8 +107,10 @@ export function ComboBuilder({ packageSlug, onPackageChange }: ComboBuilderProps
       <div className="mx-auto grid max-w-[1400px] items-start gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
         <Reveal className="lg:col-span-5">
           <p className="font-display text-[0.85rem] font-light uppercase italic tracking-[0.42em] text-mute">Combos</p>
-          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink">
-            Pacote + site sai mais <span className="text-violet pr-[0.06em] font-light italic">barato.</span>
+          <h2 className="mt-5 font-display text-[clamp(2.4rem,5.4vw,4.6rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-ink">
+            <SplitText>
+              Pacote + site sai mais <span className="text-violet pr-[0.06em] font-light italic">barato.</span>
+            </SplitText>
           </h2>
           <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-mute">
             Junte um pacote mensal a um site novo e pague {discountPercent}% a menos no site do que contratando separado. Escolha as duas
@@ -174,12 +177,7 @@ export function ComboBuilder({ packageSlug, onPackageChange }: ComboBuilderProps
 
         {/* The combo as a coupon: dark body with the items, violet stub with the saving. */}
         <Reveal delay={0.1} className="relative lg:sticky lg:top-28 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-y-10 inset-x-0 -z-10 lg:-inset-x-6 bg-[radial-gradient(closest-side,rgb(119_68_219/0.3),transparent)]"
-          />
-
-          <div className="ticket-top relative isolate overflow-hidden rounded-t-3xl bg-[linear-gradient(165deg,#1d0e55_0%,#110741_55%,#0c0630_100%)] p-7 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] sm:p-10">
+          <div className="ticket-top relative isolate overflow-hidden rounded-t-3xl bg-surface-2 p-7 sm:p-10">
             <div
               aria-hidden
               className="pointer-events-none absolute -right-20 -top-20 -z-10 size-72 rounded-full border border-white/10 [box-shadow:0_0_0_32px_rgb(255_255_255/0.02),0_0_0_70px_rgb(255_255_255/0.012)]"
@@ -187,7 +185,7 @@ export function ComboBuilder({ packageSlug, onPackageChange }: ComboBuilderProps
 
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="font-display text-sm font-light uppercase italic tracking-[0.32em] text-mute">Seu combo</p>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-500/25 px-3 py-1 text-xs font-semibold text-brand-200 ring-1 ring-brand-400/40">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-300/40 px-3 py-1 text-xs font-semibold text-brand-200">
                 <Tag weight="bold" className="size-3.5" aria-hidden />
                 {COMBO_DISCOUNT_LABEL}
               </span>
@@ -238,7 +236,7 @@ export function ComboBuilder({ packageSlug, onPackageChange }: ComboBuilderProps
             </dl>
           </div>
 
-          <div className="ticket-bottom relative overflow-hidden rounded-b-3xl bg-[linear-gradient(160deg,#6c39d2_0%,#4a1aa6_50%,#2e0d78_100%)] p-7 text-white shadow-[inset_0_-1px_0_rgb(255_255_255/0.12)] sm:p-10">
+          <div className="ticket-bottom relative overflow-hidden rounded-b-3xl bg-[color-mix(in_oklab,#6a35e0_80%,#0a0526)] p-7 text-white sm:p-10">
             <span aria-hidden className="absolute inset-x-7 top-0 border-t-2 border-dashed border-white/30 sm:inset-x-10" />
             <div className="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
               <p aria-live="polite">
