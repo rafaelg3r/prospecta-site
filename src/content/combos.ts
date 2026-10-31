@@ -13,9 +13,9 @@ export type Site = {
 };
 
 export const sites: Site[] = [
-  { slug: "landing-page", name: "Landing Page", priceMin: 900, priceMax: 1500 },
-  { slug: "site-2-paginas", name: "Site com 2 páginas", priceMin: 1600, priceMax: 2400 },
-  { slug: "site-completo", name: "Site completo", priceMin: 2500, priceMax: 4500 },
+  { slug: "landing-page", name: "Landing Page", priceMin: 890, priceMax: 1200 },
+  { slug: "site-2-paginas", name: "Site com 2 páginas", priceMin: 1290, priceMax: 1800 },
+  { slug: "site-completo", name: "Site completo", priceMin: 2500, priceMax: 2500 },
 ];
 
 export const comboSitePrice = (price: number) => Math.round(price * (1 - COMBO_SITE_DISCOUNT));

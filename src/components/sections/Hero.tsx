@@ -30,15 +30,15 @@ export function Hero() {
             className="intro-fade font-display text-[0.72rem] font-light uppercase italic tracking-[0.28em] text-mute sm:text-[0.85rem] sm:tracking-[0.42em]"
             style={delay(0.1)}
           >
-            Sites, estratégia e prospecção digital
+            Captação de clientes pelo digital
           </p>
 
           <h1 className="mt-6 font-display text-[clamp(3.1rem,7.2vw,6.6rem)] font-semibold leading-[0.98] tracking-[-0.035em]">
             <MaskLine d={0.2}>
-              <span className="text-metal">Sites que</span>
+              <span className="text-metal">Digital que</span>
             </MaskLine>
             <MaskLine d={0.32}>
-              <span className="text-metal">prospectam</span>
+              <span className="text-metal">capta mais</span>
             </MaskLine>
             <MaskLine d={0.44}>
               <span className="text-violet pr-[0.12em] font-light italic">clientes.</span>
@@ -46,8 +46,8 @@ export function Hero() {
           </h1>
 
           <p className="intro-fade mt-7 max-w-[36ch] text-lg leading-relaxed text-mute md:text-xl" style={delay(0.65)}>
-            Criamos sites e estratégias que colocam sua empresa na frente de quem já está procurando, e transformam visitas em
-            conversas no WhatsApp.
+            Site, conteúdo e estratégia trabalhando juntos para sua empresa aparecer para quem já procura o que você vende, e
+            transformar essa atenção em conversas no WhatsApp.
           </p>
 
           <div
