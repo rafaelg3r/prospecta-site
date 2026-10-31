@@ -15,6 +15,8 @@ export type ServiceOffer = {
   priceMax?: number;
   /** Shown after the price, e.g. "por projeto". */
   unit?: string;
+  /** Size of the project in a few words (site price cards). */
+  scope?: string;
 };
 
 export type ServiceCategory = {
@@ -52,14 +54,16 @@ export const serviceCategories: ServiceCategory[] = [
         priceMin: 890,
         priceMax: 1200,
         unit: "por projeto",
+        scope: "1 página, 1 oferta",
       },
       {
-        name: "Site com 2 páginas e funcionalidades",
-        short: "Site com 2 páginas",
-        description: "Duas páginas com os recursos que o seu negócio precisa.",
+        name: "Site com mais páginas",
+        short: "Mais páginas",
+        description: "Mais de uma página, com os recursos que o seu negócio precisa.",
         priceMin: 1290,
         priceMax: 1800,
         unit: "por projeto",
+        scope: "Mais de uma página",
       },
       {
         name: "Site completo",
@@ -67,6 +71,7 @@ export const serviceCategories: ServiceCategory[] = [
         priceMin: 2500,
         priceMax: 2500,
         unit: "por projeto",
+        scope: "Site institucional inteiro",
       },
       {
         name: "Projeto web sob medida",
@@ -75,12 +80,13 @@ export const serviceCategories: ServiceCategory[] = [
         priceMin: 4500,
         priceMax: 10000,
         unit: "por projeto",
+        scope: "Web app ou sistema",
       },
     ],
     process: ["Briefing", "Arquitetura", "Wireframe", "Design", "Desenvolvimento", "Conteúdo", "Responsividade", "SEO", "Testes", "Revisão", "Deploy"],
     toolkit: { title: "Em todo site", items: ["SEO", "Performance", "Responsividade", "Integrações", "Deploy", "Manutenção"] },
     owner: "rafael",
-    inPackages: "O Prospecta Launch já inclui site ou landing page. Com qualquer outro pacote mensal, o site entra no combo com desconto.",
+    inPackages: "O Prospecta Launch já inclui site ou landing page. Com os outros pacotes, o site é contratado à parte.",
   },
   {
     slug: "estrategia",

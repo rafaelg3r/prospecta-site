@@ -9,6 +9,7 @@ import { Offerings } from "@/components/sections/Offerings";
 import { Packages } from "@/components/sections/Packages";
 import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
+import { Sites } from "@/components/sections/Sites";
 import { Team } from "@/components/sections/Team";
 import { INSTAGRAM_URL, WHATSAPP_NUMBER } from "@/lib/site";
 
@@ -32,6 +33,7 @@ export default function Home() {
         <Manifesto />
         <Offerings />
         <Services />
+        <Sites />
         <Packages />
         <Process />
         <Team />

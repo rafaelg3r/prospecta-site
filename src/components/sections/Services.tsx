@@ -7,7 +7,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SERVICE_ICONS } from "@/components/ui/service-icons";
 import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { DESIGN_INSTAGRAM_URL } from "@/content/portfolio";
 import { serviceCategories, type ServiceCategory } from "@/content/services";
 import { cn } from "@/lib/cn";
@@ -84,7 +83,7 @@ export function Services() {
             </SplitText>
           </h2>
           <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-mute">
-            Contrate de forma avulsa, dentro de um pacote ou em um combo com site. Veja alguns trabalhos e toque em um serviço para agendar seu orçamento.
+            Contrate de forma avulsa ou dentro de um pacote mensal. Veja alguns trabalhos e toque em um serviço para agendar seu orçamento.
           </p>
         </Reveal>
 
@@ -96,10 +95,10 @@ export function Services() {
             <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <WhatsAppButton message={quoteMessage("um site")} />
               <a
-                href="#combos"
+                href="#sites"
                 className="group inline-flex items-center gap-2 px-2 font-semibold text-brand-200 transition-colors hover:text-white"
               >
-                Com pacote mensal: {COMBO_DISCOUNT_LABEL}
+                Ver preços dos sites
                 <ArrowDownRight
                   weight="bold"
                   className="size-4 transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:translate-y-0.5"

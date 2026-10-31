@@ -1,19 +1,20 @@
-import { ArrowDownRight, ArrowUpRight, Browsers, Equals, Plus, Tag } from "@phosphor-icons/react/dist/ssr";
+import { ArrowDownRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { OrbitDot } from "@/components/brand/OrbitDot";
+import { SiteGlyph, siteOffers } from "@/components/sections/Sites";
 import { SERVICE_ICONS } from "@/components/ui/service-icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitText } from "@/components/ui/SplitText";
-import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { packages } from "@/content/packages";
 import { serviceCategories, serviceHref } from "@/content/services";
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 
 const lowestPackagePrice = formatPrice(Math.min(...packages.map((p) => p.priceMin)));
+const lowestSitePrice = formatPrice(Math.min(...siteOffers.map((o) => o.priceMin ?? Infinity)));
 
-const STEPS = ["Pontual", "Todo mês", "Completo"];
+const STEPS = ["Pontual", "Projeto único", "Todo mês"];
 
 /* ---------- Visuals (one per format) ---------- */
 
@@ -46,7 +47,8 @@ function AreaDoors() {
   );
 }
 
-// 02: the tiers as orbits around the brand, the cycle repeats every month.
+// 03: the tiers as orbits around the brand, the cycle repeats every month.
+// Drawn in white, since it sits on the violet card.
 function PackageOrbits() {
   const rings = [44, 66, 88, 110];
   return (
@@ -59,23 +61,23 @@ function PackageOrbits() {
                 key={rx}
                 rx={rx}
                 ry={rx * 0.42}
-                stroke={i === 3 ? "#b49cf5" : "#9670ea"}
-                strokeOpacity={0.35 + i * 0.2}
+                stroke="#ffffff"
+                strokeOpacity={0.3 + i * 0.2}
                 strokeWidth={i === 3 ? 2.6 : 1.5}
               />
             ))}
           </g>
-          <circle r="20" fill="#d6d5dc" />
+          <circle r="20" fill="#ffffff" />
         </svg>
         <OrbitDot rx={110} ry={46} r={7} unitsWide={250} tilt={-30} angle={150} duration={14} color="#ffffff" />
-        <OrbitDot rx={66} ry={28} r={5} unitsWide={250} tilt={-30} angle={320} duration={10} color="#d3c4fb" />
+        <OrbitDot rx={66} ry={28} r={5} unitsWide={250} tilt={-30} angle={320} duration={10} color="#ffffff" />
       </div>
       <ol className="flex min-w-0 flex-col gap-1.5">
         {packages.map((p, i) => (
-          <li key={p.slug} className="flex items-center gap-2 text-sm font-semibold text-ink/90">
+          <li key={p.slug} className="flex items-center gap-2 text-sm font-semibold text-white">
             <span className="flex gap-0.5">
               {packages.map((_, j) => (
-                <span key={j} className={cn("size-1.5 rounded-full", j <= i ? "bg-brand-300" : "bg-white/15")} />
+                <span key={j} className={cn("size-1.5 rounded-full", j <= i ? "bg-white" : "bg-white/25")} />
               ))}
             </span>
             <span className="truncate">{p.name}</span>
@@ -86,45 +88,23 @@ function PackageOrbits() {
   );
 }
 
-// 03: package + site = combo, drawn as an equation.
-function ComboEquation() {
+// 02: the sites side by side, growing from one page to an app.
+function SiteTiers() {
   return (
-    <div aria-hidden className="flex h-full flex-col justify-center gap-3">
-      <div className="flex items-center gap-2.5">
-        <div className="flex flex-1 flex-col items-center gap-2 rounded-2xl bg-white/12 px-3 py-4 ring-1 ring-white/20">
-          <svg viewBox="-40 -24 80 48" className="h-9 w-14 overflow-visible">
-            <g transform="rotate(-24)" fill="none">
-              <ellipse rx="36" ry="13" stroke="#fff" strokeOpacity="0.9" strokeWidth="2" />
-              <ellipse rx="24" ry="9" stroke="#fff" strokeOpacity="0.5" strokeWidth="1.5" />
-            </g>
-            <circle r="8" fill="#fff" />
-          </svg>
-          <span className="text-sm font-semibold">Pacote</span>
-        </div>
-        <Plus weight="bold" className="size-5 shrink-0 text-white/80" />
-        <div className="flex flex-1 flex-col items-center gap-2 rounded-2xl bg-white/12 px-3 py-4 ring-1 ring-white/20">
-          <div className="h-9 w-14 overflow-hidden rounded-md border border-white/70">
-            <div className="flex gap-0.5 border-b border-white/50 px-1 py-0.5">
-              <span className="size-1 rounded-full bg-white/80" />
-              <span className="size-1 rounded-full bg-white/80" />
-              <span className="size-1 rounded-full bg-white/80" />
-            </div>
-            <div className="space-y-1 p-1">
-              <div className="h-1 w-3/4 rounded-full bg-white/80" />
-              <div className="h-1 w-1/2 rounded-full bg-white/50" />
-              <div className="h-2.5 w-full rounded-sm bg-white/30" />
-            </div>
-          </div>
-          <span className="text-sm font-semibold">Site</span>
-        </div>
-      </div>
-      <div className="flex items-center gap-2.5">
-        <Equals weight="bold" className="size-5 shrink-0 text-white/80" />
-        <div className="flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-dashed border-white/50 bg-white/10 px-4 py-2.5 font-display text-lg font-semibold">
-          <Tag weight="bold" className="size-5" />
-          {COMBO_DISCOUNT_LABEL}
-        </div>
-      </div>
+    <div aria-hidden className="flex h-full items-center gap-5">
+      <SiteGlyph level={2} className="h-24 w-auto shrink-0 sm:h-28" />
+      <ol className="flex min-w-0 flex-col gap-1.5">
+        {siteOffers.map((o, i) => (
+          <li key={o.name} className="flex items-center gap-2 text-sm font-semibold text-ink/90">
+            <span className="flex gap-0.5">
+              {siteOffers.map((_, j) => (
+                <span key={j} className={cn("size-1.5 rounded-full", j <= i ? "bg-brand-300" : "bg-white/15")} />
+              ))}
+            </span>
+            <span className="truncate">{o.short ?? o.name}</span>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
@@ -212,7 +192,7 @@ function FormatCard({ step, title, text, pays, idealFor, visual, action, tone }:
 
 /* ---------- Section ---------- */
 
-// Map of the offer: one-off services, monthly packages, and combos (package + site).
+// Map of the offer, in page order: one-off services, sites (per project) and monthly packages.
 export function Offerings() {
   return (
     <section id="como-contratar" className="py-24 md:py-36">
@@ -225,8 +205,8 @@ export function Offerings() {
             </SplitText>
           </h2>
           <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-mute">
-            Três formatos que se completam: comece por um serviço, ganhe constância com um pacote mensal ou junte pacote e site em um
-            combo.
+            Três formatos que se completam: comece por um serviço, tenha um site com preço por projeto ou ganhe constância com um
+            pacote mensal.
           </p>
         </Reveal>
 
@@ -260,7 +240,7 @@ export function Offerings() {
               text="Um projeto por vez, em uma das quatro áreas. Toque em uma delas para conhecer."
               visual={<AreaDoors />}
               pays="Por projeto, sem mensalidade"
-              idealFor="Resolver algo pontual, como um site novo, uma identidade visual ou um diagnóstico."
+              idealFor="Resolver algo pontual, como uma identidade visual, um carrossel ou um diagnóstico."
               action={{ href: "#servicos", label: "Ver todos os serviços" }}
             />
           </Reveal>
@@ -269,6 +249,19 @@ export function Offerings() {
             <FormatCard
               step={2}
               tone="deep"
+              title="Sites"
+              text="Da landing page ao projeto sob medida, com o preço de cada um à vista."
+              visual={<SiteTiers />}
+              pays={`Por projeto, a partir de ${lowestSitePrice}`}
+              idealFor="Ter um site novo ou trocar o atual, pagando uma vez só."
+              action={{ href: "#sites", label: "Ver preços dos sites" }}
+            />
+          </Reveal>
+
+          <Reveal as="li" delay={0.16} className="h-full min-w-0">
+            <FormatCard
+              step={3}
+              tone="bright"
               title="Pacotes mensais"
               text="Vários serviços reunidos em um plano, com planejamento, conteúdo e estratégia todo mês."
               visual={<PackageOrbits />}
@@ -277,31 +270,7 @@ export function Offerings() {
               action={{ href: "#pacotes", label: "Comparar pacotes" }}
             />
           </Reveal>
-
-          <Reveal as="li" delay={0.16} className="h-full min-w-0">
-            <FormatCard
-              step={3}
-              tone="bright"
-              title="Combos"
-              text="Um pacote mensal junto com um site novo. O site sai mais barato do que contratado separado."
-              visual={<ComboEquation />}
-              pays={`Mensalidade do pacote + site com ${COMBO_DISCOUNT_LABEL.replace(" no site", "")}`}
-              idealFor="Quem vai lançar ou renovar a presença digital e quer site e conteúdo juntos."
-              action={{ href: "#combos", label: "Montar meu combo" }}
-            />
-          </Reveal>
         </ol>
-
-        <Reveal className="mt-6 flex items-center justify-center gap-2 text-center text-mute">
-          <Browsers weight="light" className="size-5 shrink-0 text-brand-300" aria-hidden />
-          <span>
-            Só precisa de um site? Ele também é vendido avulso, na{" "}
-            <Link href={serviceHref("web")} className="font-semibold text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline">
-              área de Web
-            </Link>
-            .
-          </span>
-        </Reveal>
       </div>
     </section>
   );

@@ -16,7 +16,6 @@ import { ReelAnatomy } from "@/components/service/ReelAnatomy";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitText } from "@/components/ui/SplitText";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { COMBO_DISCOUNT_LABEL } from "@/content/combos";
 import { DESIGN_INSTAGRAM_URL } from "@/content/portfolio";
 import { offerPrice, serviceCategories, serviceHref, type ServiceCategory } from "@/content/services";
 import { teamMember } from "@/content/team";
@@ -250,7 +249,7 @@ export function ServicePage({ area }: { area: ServiceCategory }) {
           </div>
         </section>
 
-        {/* Monthly packages and combos */}
+        {/* Monthly packages */}
         <section className="py-12 md:py-20">
           <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
             <Reveal className="card-accent relative isolate overflow-hidden rounded-3xl p-8 sm:p-12">
@@ -271,12 +270,6 @@ export function ServicePage({ area }: { area: ServiceCategory }) {
                   Ver pacotes mensais
                   <ArrowRight weight="bold" className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
                 </Link>
-                {area.slug === "web" && (
-                  <Link href="/#combos" className="group inline-flex items-center gap-2 px-2 font-semibold text-white transition-colors hover:text-brand-200">
-                    Montar combo: {COMBO_DISCOUNT_LABEL}
-                    <ArrowRight weight="bold" className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-                  </Link>
-                )}
               </div>
             </Reveal>
           </div>

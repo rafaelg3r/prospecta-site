@@ -20,7 +20,7 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 | Pacotes (preços mensais do Notion) | `src/content/packages.ts` |
 | Serviços por área (preços, processo, textos das páginas) | `src/content/services.ts` |
 | Páginas de cada área (`/servicos/web`, `design`, `estrategia`, `video`) | `src/app/servicos/[area]/page.tsx` + `src/components/service/` (hero próprio por área em `service/heroes/`) |
-| Combos (pacote + site): sites, preços e desconto (10% no site) | `src/content/combos.ts` |
+| Sites (preços e escopo de cada um) | ofertas da área `web` em `src/content/services.ts` + seção `src/components/sections/Sites.tsx` |
 | Portfólio (sites e posts) | `src/content/portfolio.ts` + imagens em `public/work/` (WebP) |
 | Cores, fontes, animações | `src/app/globals.css` (bloco `@theme`) |
 | Logo e fundo de estrelas | `public/brand/` |
@@ -34,7 +34,7 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 - Cada área de serviço tem um acento próprio ao lado do violeta (Web violeta, Design rosa, Vídeo coral, Estratégia ciano). Use `data-area="<slug>"` (ou a prop `area` do `Reveal`) e as classes `accent`, `accent-light`, `accent-strong`, `text-accent-gradient`. Os valores ficam em `globals.css`; o fundo continua sempre escuro.
 - Cards são superfícies planas com borda fina (1px): `panel` (base), `card-area` (leve tom do acento da área; em links, `hover:border-accent/40`) e `card-accent` (bloco sólido no acento, um por grupo). Sem sombra colorida, sem borda em gradiente, sem brilho embaixo, sem "levantar" no hover. Ícones de área aparecem soltos na cor do acento (peso `light`), não dentro de quadrados coloridos.
 - Navegação para as áreas usa `AreaLink` (pílula com contorno); CTAs continuam com `WhatsAppButton`.
-- Oferta em três formatos, apresentados na seção "Como contratar" (`Offerings.tsx`): serviços avulsos, pacotes mensais e combos (pacote + site). O Launch já inclui site e fica fora dos combos (`includesSite`).
+- Oferta em três formatos, apresentados na seção "Como contratar" (`Offerings.tsx`) na mesma ordem da página: serviços avulsos, sites (por projeto, seção `#sites`) e pacotes mensais (`#pacotes`). O Launch já inclui site (`includesSite`).
 - Links internos para outras páginas usam `next/link`; os do menu são absolutos (`/#pacotes`) para funcionar a partir das páginas de serviço.
 - Botões: todos os CTAs usam `WhatsAppButton` com o rótulo "Agendar orçamento" e mensagem específica (pacote ou serviço). Preenchimento sólido, sem brilho. Alturas fixas: `sm` 40px (só no header), `md` 48px (padrão), `lg` 56px (só no hero e no CTA final). Variante `light` em fundos de acento. Hover: rótulo rola (`.roll`) e a seta troca (`.arrow-swap`).
 - Formas: botões em pílula; painéis `rounded-3xl`.

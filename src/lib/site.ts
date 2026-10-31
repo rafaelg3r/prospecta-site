@@ -16,8 +16,8 @@ export function whatsappLink(message: string = DEFAULT_WHATSAPP_MESSAGE) {
 // Absolute ("/#...") so the menu also works from the service pages.
 export const NAV_LINKS = [
   { href: "/#servicos", label: "Serviços" },
+  { href: "/#sites", label: "Sites" },
   { href: "/#pacotes", label: "Pacotes" },
-  { href: "/#combos", label: "Combos" },
   { href: "/#metodo", label: "Método" },
   { href: "/#quem-faz", label: "Quem faz" },
 ] as const;

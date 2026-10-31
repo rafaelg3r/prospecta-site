@@ -109,7 +109,7 @@ function ServicesMenu() {
                 })}
               </ul>
               <div className="flex items-center justify-between border-t border-white/10 bg-white/[0.03] px-7 py-4 text-sm">
-                <span className="text-mute">Avulsos, em pacote mensal ou em combo com site.</span>
+                <span className="text-mute">Avulsos ou em pacote mensal.</span>
                 <Link href="/#servicos" onClick={close} className="font-semibold text-brand-200 transition-colors hover:text-white">
                   Ver todos os serviços
                 </Link>

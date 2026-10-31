@@ -1,7 +1,6 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitText } from "@/components/ui/SplitText";
-import { COMBO_SITE_DISCOUNT } from "@/content/combos";
 
 const FAQ = [
   {
@@ -9,16 +8,12 @@ const FAQ = [
     a: "Não. Todos os serviços podem ser contratados de forma avulsa, como um site, uma landing page, um carrossel ou um diagnóstico digital. Os pacotes são para quem quer acompanhamento contínuo.",
   },
   {
-    q: "O que é um combo?",
-    a: `É um pacote mensal contratado junto com um site. No combo, o site sai com ${Math.round(COMBO_SITE_DISCOUNT * 100)}% de desconto sobre o valor avulso, e o pacote mantém o mesmo valor mensal.`,
-  },
-  {
     q: "Vocês fazem o site e também o conteúdo?",
     a: "Sim. Web, design, vídeo e estratégia acontecem no mesmo estúdio, então site, posts e Reels falam a mesma língua.",
   },
   {
     q: "Por onde a gente começa?",
-    a: "Por uma conversa no WhatsApp. Entendemos o momento da sua empresa e indicamos o caminho: um serviço pontual, um pacote mensal, um combo com site ou um diagnóstico digital.",
+    a: "Por uma conversa no WhatsApp. Entendemos o momento da sua empresa e indicamos o caminho: um serviço pontual, um site, um pacote mensal ou um diagnóstico digital.",
   },
   {
     q: "Como vocês medem o resultado?",
