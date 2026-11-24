@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Urbanist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Header } from "@/components/ui/Header";
 import { MotionProvider } from "@/components/ui/MotionProvider";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <FloatingWhatsApp />
           <PageTransition />
         </MotionProvider>
+        <Analytics />
       </body>
     </html>
   );
