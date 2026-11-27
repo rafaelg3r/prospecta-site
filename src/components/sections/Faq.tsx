@@ -21,7 +21,7 @@ const FAQ = [
   },
   {
     q: "Os valores podem variar?",
-    a: "Os valores dos pacotes são a referência mensal, e os dos sites são por projeto. Quando há faixa, o preço final depende do escopo e é confirmado na proposta, depois de entendermos o momento do seu negócio.",
+    a: "Os pacotes mensais têm preço fixo. Sites e serviços avulsos são cobrados por projeto e, quando há faixa, o preço final depende do escopo e é confirmado na proposta, depois de entendermos o momento do seu negócio.",
   },
 ];
 

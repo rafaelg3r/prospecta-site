@@ -17,7 +17,7 @@ Landing page da Prospecta Studio. Next.js 16 (App Router, **export estático**),
 | O quê | Onde |
 | --- | --- |
 | WhatsApp, mensagem padrão, Instagram, links do menu | `src/lib/site.ts` |
-| Pacotes (preços mensais do Notion) | `src/content/packages.ts` |
+| Pacotes (preços fixos mensais, fonte: Tabela de preços do Prospecta Brain) | `src/content/packages.ts` |
 | Serviços por área (preços, processo, textos das páginas) | `src/content/services.ts` |
 | Páginas de cada área (`/servicos/web`, `design`, `estrategia`, `video`) | `src/app/servicos/[area]/page.tsx` + `src/components/service/` (hero próprio por área em `service/heroes/`) |
 | Sites (preços e escopo de cada um) | ofertas da área `web` em `src/content/services.ts` + seção `src/components/sections/Sites.tsx` |

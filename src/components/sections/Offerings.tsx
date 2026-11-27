@@ -11,7 +11,7 @@ import { serviceCategories, serviceHref } from "@/content/services";
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 
-const lowestPackagePrice = formatPrice(Math.min(...packages.map((p) => p.priceMin)));
+const lowestPackagePrice = formatPrice(Math.min(...packages.map((p) => p.price)));
 const lowestSitePrice = formatPrice(Math.min(...siteOffers.map((o) => o.priceMin ?? Infinity)));
 
 const STEPS = ["Pontual", "Projeto único", "Todo mês"];

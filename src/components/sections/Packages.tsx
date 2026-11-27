@@ -83,7 +83,7 @@ function PackageOrbit({ active }: { active: number }) {
           >
             <p className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink">{packages[active].name}</p>
             <p className="mt-2 font-display text-xl font-medium text-brand-200">
-              {formatPrice(packages[active].priceMin, packages[active].priceMax)}
+              {formatPrice(packages[active].price)}
               <span className="text-base font-normal text-mute"> /mês</span>
             </p>
           </m.div>
@@ -163,7 +163,7 @@ function PackageCard({ pkg, index, onActive }: PackageCardProps) {
 
       <p className="mt-6 flex flex-wrap items-baseline gap-x-2 font-display">
         <span className="text-[clamp(1.6rem,3.2vw,2.15rem)] font-semibold tracking-[-0.02em] text-ink">
-          {formatPrice(pkg.priceMin, pkg.priceMax)}
+          {formatPrice(pkg.price)}
         </span>
         <span className="text-lg text-mute">/mês</span>
       </p>
